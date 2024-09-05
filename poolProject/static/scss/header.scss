@@ -1,0 +1,235 @@
+@import 'variables';
+
+.header{
+    padding-top: 38px;
+    padding-bottom: 38px;
+    min-height: 50px;
+    transition: all .5s ease;
+    &-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all .5s ease;
+        &-logo{
+            display: flex;
+            align-items: center;
+            img{
+                width: 33px;
+                height: 33px;
+                margin-right: 12px;
+            }
+            p{
+                margin-bottom: 0;
+                @include heating-h6;
+                font-family: 'Play fair';
+                font-weight: 800;
+            }
+        }
+        &-tel{
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 22.5px;
+            letter-spacing: -0.01em;
+            text-align: left;
+        }
+
+    }
+    &-nav{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        &-menu{
+            display: flex;
+            align-items: center;
+            padding-right: 50px;
+            nav > ul{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0;
+                &>li{
+                    margin-right: 12px;
+                    font-size: 18px;
+                    font-weight: 400;
+                    line-height: 22.5px;
+                    text-align: left;
+                }
+            }
+        }
+        &-icon{
+            display: flex;
+            i{
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 19.2px;
+                letter-spacing: 0.055em;
+                text-align: center;
+                margin-left: 12px;
+                color: $color-text;
+                
+            }
+        }
+    }
+}
+
+
+.mobil-visible{
+    display: none;
+    justify-content: flex-end;
+}
+
+.burger{
+    position: relative;
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+    &>.toggle{
+        width: 100%;
+        
+        position: absolute;
+        border-radius: 6px;
+
+    }
+}
+
+.first{
+    top: 0;
+    left: 0;
+    height: 8px;
+    transition: all .5s ease;
+    background: $color-dark-bg;
+}
+
+.center{
+    top: calc(50% - 4px);
+    left: 0;
+    height: 8px;
+    transition: all .3s ease;
+    background: $color-dark-bg;
+}
+.last{
+    bottom: 0;
+    left: 0;
+    height: 8px;
+    transition: all .5s ease;
+    background: $color-dark-bg;
+}
+
+.opacity-center{
+    top: 50%;
+    height: 0;
+    opacity: 0;
+}
+
+.opacity-top{
+    top: calc(50% - 4px);
+  }
+  
+.opacity-bottom{
+    bottom: calc(50% - 4px);
+  }
+
+.rotate-top{
+    transform: rotate(45deg);
+    background: $color-white;
+}
+
+.rotate-bottom{
+    transform: rotate(-45deg);
+    background: $color-white;
+}
+
+.body-nav{
+    width: 0;
+    z-index: 98;
+    position: relative;
+    display: flex;
+    height: 100vh;
+    background: $color-dark-bg;
+    position: fixed;
+    top: 0;
+    right: -150px;
+    transition: all 1s ease;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 120px;
+    padding-right: 40px;
+    &-menu{
+        display: flex;
+       flex-direction: column;
+       align-items: flex-end;
+       text-align: right;
+       height: 100%;
+       justify-content: space-between;
+       &-list{
+            margin-top: 35px;
+
+        }
+       a{
+        color: $color-white;
+
+        }
+    }
+}
+.body-title-logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all .5s ease;
+    img{
+        width: 33px;
+        height: 33px;
+        filter: grayscale(100%) invert(100%) contrast(400%);
+    }
+    p{
+        font-family: 'Play fair';
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 30.8px;
+        text-align: left;
+        color: $color-white;
+        padding-top: 20px;
+    }
+}
+
+.nav-animation-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+    &-contact{
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 22.5px;
+        letter-spacing: -0.01em;
+        text-align: left;
+        padding-top: 12px;
+    }
+}
+
+.nav-animation{
+    display: none;
+    transition: all .5s ease;
+}
+
+@media (max-width: 1024px) {
+    .header{
+        &-title{
+            justify-content: space-between;
+        }
+        &-nav{
+            justify-content: center;
+            padding-top: 40px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .header-visible{
+        display: none;
+    }
+    .mobil-visible{
+        display: flex;
+    }
+    
+}

@@ -1,0 +1,268 @@
+
+@import 'variables';
+@import 'reset';
+
+.welcome{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    &-left{
+        background-color: rgba(235, 243, 245, 1);
+        width: 50%;
+        min-height: 720px;
+        padding-top: 160px;
+        padding-left: 260px;
+        padding-bottom: 260px;
+        height: calc(100vh - (38px + 50px + 38px));
+    }
+    &-content{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    &-welcome{
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 23.17px;
+        letter-spacing: 0.1em;
+        text-align: left;
+        text-transform: uppercase;
+        color: $color-bg;
+    }
+    &-title{
+       @include heating-h1;
+       color: $color-title; 
+    }
+    &-subtitle{
+        font-size: 19px;
+        font-weight: 400;
+        line-height: 32.3px;
+        text-align: left;
+        color: rgba(85, 85, 85, 1);
+    }
+    &-right{
+        width: 50%;
+        height: calc(100vh - (38px + 50px + 38px));
+        background: $color-dark-bg;
+        display: flex;
+        align-items: center;
+    }
+    &-block{
+        width: 561px;
+        height: 663px;
+        position: relative;
+        // overflow: hidden;
+    }
+}
+
+.slides {
+    position: relative;
+    display: flex;
+    width: 510px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    position: absolute;
+    min-width: 100%;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.line-top{
+    width: 0;
+    height: 10px;
+    background: $color-white;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    opacity: 0;
+    transition: all .5s ease;
+    transform: translateX(-100%);
+    
+}
+
+.top-animated{
+    animation: slideInFromLeft 2s forwards;    
+}
+
+.line-right{
+    width: 10px;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    background: $color-white;
+    transition: all .5s ease;
+}
+
+.line-bottom{
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 100%;
+    opacity: 0;
+    transition: all .5s ease;
+    transform: translateX(-100%);
+    background: $color-white;
+}
+
+.line-left{
+    width: 10px;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background: $color-white;
+    transition: all .5s ease;
+}
+
+.block-img{
+    width: 545px;
+    height: 550px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -40px;
+    opacity: 0;
+    transition: all .5s ease;
+    img{
+        z-index: 95;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.featurs{
+    width: 100%;
+    box-shadow: 0px 37px 60px 0px rgba(0, 0, 0, 0.02);
+    &-body{
+        min-height: 790px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        &-card{
+            flex: 1 1;
+            width: 327px;
+            max-width: 327px;
+            
+        }
+    }
+}
+
+
+@media (max-width: 1440px) {
+    .welcome{
+        &-left{
+            padding-top: 160px;
+            padding-left: 160px;
+            padding-bottom: 160px;
+
+        }
+        &-title{
+            @include heating-h2;
+        }
+        &-right{
+            align-items: flex-start;
+            padding-top: 160px;
+        }
+    }
+    .slides {
+        width: 410px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .welcome{
+        &-left{
+            width: 100%;
+            height: 50vh;
+        }
+        &-title{
+            @include heating-h3;
+
+         }
+         &-right{
+            width: 100%;
+            height: 70vh;
+            align-items: center;
+            margin: 0;
+            justify-content: center;
+            padding-top: 30px;
+        }
+         &-block{
+            width: 90%;
+        height: 90%;
+            position: relative;
+        }
+    }
+    .slides {
+        width: 560px;
+    }
+    .block-img{
+        width: 90%;
+        height: 90%;
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        left: 50%;
+        
+    }
+    .line-left{
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome{
+        &-left{
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-bottom: 60px;
+
+        }
+        &-title{
+            @include heating-h3;
+
+         }
+    }
+}
+
+@media (max-width: 430px) {
+    .welcome{
+        &-title{
+            @include heating-h4;
+         }
+    }
+    .slides {
+        width: 270px;
+    }
+}
+
+@keyframes slideInFromLeft {
+    50%{
+        transform: translateX(0);
+        width: 50%;
+        right: 0;
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        width: 100%;
+        right: 0;
+        opacity: 1;
+    }
+    
+}

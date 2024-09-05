@@ -1,0 +1,47 @@
+{% extends "components/base.html" %}
+{% load static %}
+{% block content %}
+
+
+    <section class="welcome" id="welcome">
+        <div class="welcome-left">
+            <div class="content slider">
+                <div class="slides">
+                    {% for title in titles %}
+                        <div class="slide">
+                                <p class="welcome-welcome">{{ title.welcome }}</p>
+                                <h2 class="welcome-title">{{ title.title }}</h2>
+                                <p class="welcome-subtitle">{{ title.subtitle }}</p>
+                        </div>
+                    {% endfor %}  
+                </div>
+            </div>
+        </div>
+        <div class="welcome-right">
+            <div class="welcome-block">
+                <div class="line-top"></div>
+                <div class="line-right"></div>
+                <div class="line-bottom"></div>
+                <div class="line-left"></div>
+                <div class="block-img">
+                    <img src="{% static 'img/pages/001.jpg' %}" alt="ATP">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="featurs" id="featurs">
+        <div class="container">
+            <div class="row">
+                <div class="col featurs-body">
+                    <div class="featurs-body-card">
+                        <div class="featurs-body-card-img">1</div>
+                        <div class="featurs-body-card-title">2</div>
+                        <div class="featurs-body-card-text">3</div>
+                        <div class="featurs-body-card-button">4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

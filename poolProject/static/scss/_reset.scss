@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family: 'Play fair';
+    font-weight: 700;
+}
+
+p,
+li,
+a,
+input,
+button{
+    font-family: 'Manrope';
+    font-weight: 400;
+}
+
+ol, ul, li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    border: none;
+    color: $color-text;
+}
+
+input, button{
+    background: transparent;
+    border: none;
+    outline: none;
+}

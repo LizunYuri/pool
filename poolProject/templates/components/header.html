@@ -1,0 +1,70 @@
+{% load static %}
+
+<header class="header">
+    <div class="container header-visible">
+        <div class="row">
+            <div class="col-xl-6 col-lg-12 header-title">
+                <a class="header-title-logo" href="https://poolkuban.ru">
+                    <img src="{% static 'img/logo/rak.png' %}" alt="Акватехпласт">
+                    <p>Акватехпласт</p>
+                </a>
+                <a class="header-title-tel" href="tel:89534143001">тел. 8(952)414-30-01</a>
+                <a class="header-title-tel" href="tel:+79384796301">тел. 8(938) 479-63-01</a>
+            </div>
+            <div class="col-xl-6 col-lg-12 header-nav">
+                <div class="header-nav-menu">
+                    <nav>
+                        <ul>
+                            <li class="header-effect"><a href="#">home</a></li>
+                            <li class="header-effect"><a href="#">blog</a></li>
+                            <li class="header-effect"><a href="#">services</a></li>
+                            <li class="header-effect"><a href="#">contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-nav-icon header-effect">
+                    <a href="#">
+                        <i class="fa-brands fa-vk"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-solid fa-at"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mobil-visible">
+        <div onclick="burgerClick()"  class="burger">
+            <div class="toggle first" id="toggle-first"></div>
+            <div class="toggle center"></div>
+            <div class="toggle last"></div>
+        </div>
+    </div>
+    <div class="body-nav">
+        
+        <div class="body-nav-menu">
+            <nav class="nav-animation">
+                <ul>
+                    <li class='body-nav-menu-list'><a href="#">home</a></li>
+                    <li class='body-nav-menu-list'><a href="#">blog</a></li>
+                    <li class='body-nav-menu-list'><a href="#">services</a></li>
+                    <li class='body-nav-menu-list'><a href="#">contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-animation-link nav-animation">
+                <a class="body-title-logo" href="https://poolkuban.ru">
+                    <img src="{% static 'img/logo/rak.png' %}" alt="Акватехпласт">
+                    <p>Акватехпласт</p>
+                </a>
+                <a class="nav-animation-link-contact" href="tel:89534143001">тел. 8(952)414-30-01</a>
+                <a class="nav-animation-link-contact" href="tel:+79384796301">тел. 8(938) 479-63-01</a>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+</header>
