@@ -85,8 +85,8 @@ $color-white: rgba(255, 255, 255, 1);
 }
 
 @mixin light-btn{
-    padding: 17px 32px 17px 32px;
-    opacity: 0px;
+    // padding: 17px 32px 17px 32px;
+    // opacity: 0px;
     border: 2px solid $color-bg;
     font-size: 13px;
     font-weight: 800;

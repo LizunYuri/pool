@@ -33,11 +33,61 @@
         <div class="container">
             <div class="row">
                 <div class="col featurs-body">
-                    <div class="featurs-body-card">
-                        <div class="featurs-body-card-img">1</div>
-                        <div class="featurs-body-card-title">2</div>
-                        <div class="featurs-body-card-text">3</div>
-                        <div class="featurs-body-card-button">4</div>
+                    {% for service in services %}
+                        <div class="featurs-body-card">
+                            <div class="featurs-body-card-img">
+                                {% if service.get_image_url %}
+                                    <img src="{{ service.get_image_url }}" alt="{{ service.title }}">
+                                {% else %}
+                                    <p>Изображение отсутствует</p>
+                                {% endif %}
+                            </div>
+                            <h3 class="featurs-body-card-title">{{ service.title}}</h3>
+                            <div class="featurs-body-card-text">{{ service.description }}</div>
+                            <a class="featurs-body-card-link" href="{% url 'service_detail' service.pk %}">Подробнее...</a>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-12 about-content">
+                    <h3>О нас</h3>
+                    <div class="about-content-body">
+                        <div class="about-content-body-card">
+                            {% for about in abouts %}
+                                <div class="about-content-body-card-text">
+                                    <h3 class="about-content-body-title">{{ about.title }}</h3>
+                                    <p class="about-content-body-escription">{{ about.description }}</p>
+                                </div>
+                                
+                            {% endfor %} 
+                            <div class="about-content-body-card-icon">
+                                {% for about in abouts %}
+                                    <div class="about-icon">
+                                        <div class="about-icon-img">
+                                            {% if about.get_icon_url %}
+                                                <img src="{{ about.get_icon_url }}" alt="{{ about.sibtitle }}">
+                                            {% else %}
+                                                <p>Изображение отсутствует</p>
+                                            {% endif %}
+                                        </div>
+                                        <p class="about-icon-title">{{ about.subtitle }}</p>
+                                    </div>
+                                    
+                                {% endfor %}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-12 about-image">
+                    <div class="about-image-cube"></div>
+                    <div class="about-image-content">
+                        <img src="{% static 'img/pages/002.jpeg' %}" alt="">
                     </div>
                 </div>
             </div>
