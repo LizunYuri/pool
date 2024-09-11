@@ -44,7 +44,7 @@
                             </div>
                             <h3 class="featurs-body-card-title">{{ service.title}}</h3>
                             <div class="featurs-body-card-text">{{ service.description }}</div>
-                            <a class="featurs-body-card-link" href="{% url 'service_detail' service.pk %}">Подробнее...</a>
+                            <a class="featurs-body-card-link hovered-btn" href="{% url 'service_detail' service.pk %}">Подробнее...</a>
                         </div>
                     {% endfor %}
                     
@@ -59,39 +59,73 @@
                     <h3>О нас</h3>
                     <div class="about-content-body">
                         <div class="about-content-body-card">
+                            <div id="about-detail-container"></div>
+                        </div>
+                        <div class="about-content-body-card-icon">
                             {% for about in abouts %}
-                                <div class="about-content-body-card-text">
-                                    <h3 class="about-content-body-title">{{ about.title }}</h3>
-                                    <p class="about-content-body-escription">{{ about.description }}</p>
-                                </div>
-                                
-                            {% endfor %} 
-                            <div class="about-content-body-card-icon">
-                                {% for about in abouts %}
-                                    <div class="about-icon">
+                                <div class="about-icon">
+                                    <a href="#" class="about-link" data-id="{{ about.pk }}">
                                         <div class="about-icon-img">
                                             {% if about.get_icon_url %}
-                                                <img src="{{ about.get_icon_url }}" alt="{{ about.sibtitle }}">
+                                                <img src="{{ about.get_icon_url }}" alt="{{ about.subtitle }}">
                                             {% else %}
                                                 <p>Изображение отсутствует</p>
                                             {% endif %}
                                         </div>
                                         <p class="about-icon-title">{{ about.subtitle }}</p>
-                                    </div>
-                                    
-                                {% endfor %}
+                                    </a>
                                 </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-12 about-image">
-                    <div class="about-image-cube"></div>
+                    <div class="about-image-cube" id="cube"></div>
                     <div class="about-image-content">
-                        <img src="{% static 'img/pages/002.jpeg' %}" alt="">
+                        <img class="about-image-content-img" src="{% static 'img/pages/002.jpeg' %}" alt="ATP">
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <section class="shop" id="shop">
+        <div class="container shop-container">
+            <h2 class="shop-top-subtitle">Наша продукция</h2>
+            <h3 class="shop-top-title">We are Experienced in making you very Beautiful</h3>
+            {% for category_data in categories_with_products %}
+            <div class="row shop-content">
+                <div class="col-xl-6 col-lg-12 shop-img">
+                    <img src="{{ category_data.category.get_image_url }}" alt="{{ category_data.category.category }}">
+                </div>
+                <div class="col-xl-6 col-lg-12 shop-list">
+                    <div class="block"></div>
+                    <h3 class="shop-title">{{ category_data.category.category }}</h3>
+                    <div class="shop-list-block">
+                        {% for product in category_data.products %}
+                            <div class="shop-list-block-item">
+                                <div class="shop-list-block-item-title">
+                                    <h3>{{ product.title }}</h3>
+                                    <p><span>Цена от: </span>{{ product.price_to }} руб.</p>
+                                </div>
+                               <p>{{ product.description|truncatewords:9 }}</p>
+                            </div>
+                        {% endfor %}
+                        {% if category %}
+                            <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'category_detail' category.slug %}">Узнать больше...</a>  
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </section>
 
 {% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/sliderText.js' %}"></script>
+    <script src="{% static 'script/loadAboutDetail.js' %}"></script>
+{% endblock %}
+
