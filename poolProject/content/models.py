@@ -51,7 +51,7 @@ class FirstPageAboutModel(models.Model):
 
     def delete(self, *args, **kwargs):
         if self.icon:
-            # Проверяем, существует ли файл и его путь
+            
             try:
                 if os.path.isfile(self.icon.path):
                     os.remove(self.icon.path)
@@ -65,6 +65,27 @@ class FirstPageAboutModel(models.Model):
         if self.icon:
             return self.icon.url
         return None
+
+    def __str__(self):
+        return self.title
+
+class FirstPageAwesomeModel(models.Model):
+    title = models.CharField(max_length=100,
+                             help_text='не больше 100 символов, включая пробелы и знаки припенания',
+                             verbose_name='Заголовок пункта "приемущества"')
+    
+    text = models.CharField(max_length=300,
+                                help_text='не больше 300, включая пробелы и знаки припенания',
+                                verbose_name='Описание')
+
+    class Meta: 
+        verbose_name = 'Контент блока "Наши приемущества"'
+        verbose_name_plural = 'Управление блоком "Наши приемущества"'
+
+    def save(self, *args, **kwargs):
+        if not self.pk and FirstPageAwesomeModel.objects.count() >= 6:
+            raise ValidationError("Может быть только три записи.")
+        super(FirstPageAwesomeModel, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

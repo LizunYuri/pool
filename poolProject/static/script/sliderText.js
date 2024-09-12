@@ -4,6 +4,7 @@ const leftLine = document.querySelector('.line-left')
 const bottomLine = document.querySelector('.line-bottom')
 const rightLine = document.querySelector('.line-right')
 const imgBlock = document.querySelector('.block-img')
+const discountSlide = document.querySelectorAll('.discount-slide')
 
 let currentIndex = 0;
 const totalSlides = slides.length;
@@ -18,6 +19,23 @@ const changeSlide = () => {
 
     currentIndex = (currentIndex + 1) % totalSlides;
 };
+
+    let currentContentIndex = 0
+    const totalContent = discountSlide.length;
+
+
+    const sliderText = () => {
+        console.log(`Changing text slide to index: ${currentContentIndex}`);
+    
+        discountSlide.forEach((slide) => {
+            slide.classList.remove('discount-active');
+        });
+    
+        discountSlide[currentContentIndex].classList.add('discount-active');
+    
+        currentContentIndex = (currentContentIndex + 1) % totalContent;
+    }
+    
 
 const cubeEffect = () => {
 
@@ -51,6 +69,10 @@ window.addEventListener('DOMContentLoaded', () => {
     slides[currentIndex].classList.add('active');
 
     setInterval(changeSlide, 8000);
+
+    discountSlide[currentContentIndex ].classList.add('discount-active');
+
+    setInterval(sliderText, 5000);
 
     cubeEffect()
 

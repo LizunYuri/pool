@@ -9,6 +9,12 @@ const shopList = document.querySelectorAll('.shop-list-block-item')
 const shopTopSubtitle = document.querySelector('.shop-top-subtitle');
 const shopTopTitle = document.querySelector('.shop-top-title');
 const shopBtn = document.querySelectorAll('.shop-btn');
+const reviewTitle = document.querySelector('.review-title')
+const reviewSubtitle =  document.querySelector('.review-subtitle')
+const reviewCard = document.querySelectorAll('.review-card')
+const awesomeTitle = document.querySelector('.awesome-title')
+const awesomeSubtitle = document.querySelector('.awesome-subtitle')
+const awesomeCard =  document.querySelectorAll('.awesome-content-card')
 
 const opacityEffect = (content, timing, effect, delay, percent) => {
     content.forEach((e, index) => {
@@ -38,7 +44,7 @@ const loadEffect = (content, timeout, effect, percent) => {
 const handleScroll = () => {
     opacityEffect(
         featursCards,
-        1000, 
+        600, 
         'opacity-card', 
         500,
         0.2
@@ -46,7 +52,7 @@ const handleScroll = () => {
 
     opacityEffect(
         aboutIcons, 
-        1500,
+        700,
         'about-opacity',
         500,
         0.2
@@ -54,21 +60,21 @@ const handleScroll = () => {
 
     loadEffect(
         aboutContent, 
-        1000, 
+        600, 
         'about-opacity',
         0.3
     );
 
     loadEffect(
         aboutCube, 
-        1000, 
+        600, 
         'visible',
         0.3
     );
 
     loadEffect(
         aboutImg,
-        1500,
+        700,
         'img-visible',
         0.3
     );
@@ -83,7 +89,7 @@ const handleScroll = () => {
 
     opacityEffect(
         shopTitle, 
-        1300,
+        800,
         'about-opacity',
         100,
         0.2
@@ -98,14 +104,14 @@ const handleScroll = () => {
 
     loadEffect(
         shopTopSubtitle,
-        1500,
+        800,
         'about-opacity',
         0.1
     );
 
     loadEffect(
         shopTopTitle,
-        1500,
+        800,
         'about-opacity',
         0.1
     );
@@ -115,6 +121,51 @@ const handleScroll = () => {
         700,
         'about-opacity',
         200,
+        0.1
+    );
+
+    loadEffect(
+        reviewSubtitle,
+        500,
+        'about-opacity',
+        0.1
+    );
+
+    loadEffect(
+        reviewTitle,
+        500,
+        'about-opacity',
+        0.1
+    );
+
+    opacityEffect(
+        reviewCard, 
+        700,
+        'about-opacity',
+        100,
+        0.1
+    );
+
+
+    loadEffect(
+        awesomeSubtitle,
+        500,
+        'about-opacity',
+        0.1
+    );
+
+    loadEffect(
+        awesomeTitle,
+        500,
+        'about-opacity',
+        0.1
+    );
+
+    opacityEffect(
+        awesomeCard, 
+        900,
+        'about-opacity',
+        100,
         0.1
     );
 

@@ -1,6 +1,7 @@
 import os
 from django.utils import timezone
 from django.db import models
+from datetime import date
 
 
 class ServicesModel(models.Model):
@@ -59,7 +60,6 @@ class ServicesModel(models.Model):
         verbose_name = 'Услуги компании'
         verbose_name_plural = 'Услуги предоставляемые компанией'
 
-
 class ShopCategoryModel(models.Model):
     category = models.CharField(max_length=200, 
                                 verbose_name='Категория товара',
@@ -92,11 +92,13 @@ class ShopCategoryModel(models.Model):
         verbose_name_plural = 'Категория товара'
 
 class ShopElementModel(models.Model):
+
     date = models.DateField(default=timezone.now,
                             verbose_name='Дата публикации')
     category = models.ForeignKey(ShopCategoryModel, 
                                  verbose_name='Категория товара',
-                                 help_text='Выбрать категорию', on_delete=models.CASCADE)
+                                 help_text='Выбрать категорию', 
+                                 on_delete=models.CASCADE)
     title = models.CharField(max_length=200, 
                              verbose_name='Название продукции',
                              help_text='Не больше 200 сиволов')
@@ -140,3 +142,41 @@ class ShopElementModel(models.Model):
     class Meta:
         verbose_name='Товар'
         verbose_name_plural = 'Каталог товаров'
+
+class DiscountModel(models.Model):
+    title = models.CharField(max_length=70,
+                             verbose_name='Заголовок',
+                             help_text='Не больше 70 символов')
+    description = models.CharField(max_length=100,
+                                   verbose_name='Краткое описание',
+                                   help_text='Не больше 100 символов')
+    conditions = models.CharField(max_length=100,
+                                  verbose_name='Спецпредложение',
+                                  help_text='Не больше 100 символов',
+                                  null=True)
+    percent = models.IntegerField(verbose_name='Процент',
+                                help_text='Если подразумевается скидка',
+                                null=True,
+                                blank=True)
+    date_of = models.DateField(verbose_name='Дата начала',
+                               help_text='Дата начала акции',
+                               default=timezone.now)
+    date_to = models.DateField(verbose_name='Дата окончания',
+                               help_text='Дата окончания акции',
+                               default=timezone.now)
+    publish = models.BooleanField(default=True, verbose_name='Опубликовано')
+    
+    def save(self, *args, **kwargs):
+        
+        if self.date_to < date.today():
+            self.publish = False
+        super().save(*args, **kwargs)
+    
+    def __str__(self):
+
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Спецпредложение'
+        verbose_name_plural = 'Скидки и акции'
+

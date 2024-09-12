@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from content.models import FirstPageTitleModel, FirstPageAboutModel
-from catalog.models import ServicesModel, ShopCategoryModel, ShopElementModel
+from content.models import FirstPageTitleModel, FirstPageAboutModel, FirstPageAwesomeModel
+from catalog.models import ServicesModel, ShopCategoryModel, ShopElementModel, DiscountModel
+from review.models import ReviewModel
 from django.http import JsonResponse
-
+from datetime import date
 
 
 def index(request):
@@ -10,8 +11,17 @@ def index(request):
     services = ServicesModel.objects.all()
     abouts = FirstPageAboutModel.objects.all()
     categories = ShopCategoryModel.objects.all()
+    reviews_publish = ReviewModel.objects.filter(publish=True)
+    awesomes = FirstPageAwesomeModel.objects.all()
+    discounts = DiscountModel.objects.filter(publish=True)
+    today = date.today()
+
 
     categories_with_products = []
+    
+    for discount in discounts:
+        # Вычисление количества дней до окончания акции
+        discount.days_left = (discount.date_to - today).days
 
     for category in categories:
         products = ShopElementModel.objects.filter(category=category)[:3]
@@ -19,11 +29,14 @@ def index(request):
             categories_with_products.append({
                 'category' : category,
                 'products' : products})
-
+            
     return render(request, 'main/index.html', {'titles' : titles,
                                                'services' : services,
                                                'abouts' : abouts,
                                                'categories_with_products' : categories_with_products,
+                                               'reviews': reviews_publish,
+                                               'awesomes': awesomes,
+                                               'discounts' : discounts,
                                                })
 
 
@@ -42,6 +55,8 @@ def about_detail(request, pk):
     about_detail = get_object_or_404(FirstPageAboutModel, pk=pk)
 
     return render(request, 'components/about_detail.html', {'about_detail': about_detail})
+
+
 
 
 def category_detail(request, slug):

@@ -94,3 +94,25 @@ $color-white: rgba(255, 255, 255, 1);
     letter-spacing: 0.12em;
     text-align: center;
 }
+
+@mixin title{
+    @include heating-h3;
+    text-align: center;
+    max-width: 659px;
+    padding-bottom: 36px;
+    transition: all .5s ease;
+
+}
+
+@mixin subtitle{
+    font-family: 'Manrope';
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 23.17px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: $color-bg;
+    text-transform: uppercase;
+    padding-bottom: 38px;
+    transition: all .5s ease;
+}

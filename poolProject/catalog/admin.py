@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ServicesModel, ShopCategoryModel, ShopElementModel
+from .models import ServicesModel, ShopCategoryModel, ShopElementModel, DiscountModel
 
 
 @admin.register(ServicesModel)
@@ -23,3 +23,9 @@ class ShopElementModelAdmin(admin.ModelAdmin):
     search_fields = ('title', 'category', 'date')
     list_filter = ('title', 'category', 'date')
     prepopulated_fields = {"slug": ("title",)}
+
+@admin.register(DiscountModel)
+class DiscountModelADmin(admin.ModelAdmin):
+    list_display = ('title', 'publish', 'date_of', 'date_to')
+    search_fields = ('title', 'date_of', 'date_to')
+    list_filter = ('title', 'date_of', 'date_to')

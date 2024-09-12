@@ -110,8 +110,8 @@
                                <p>{{ product.description|truncatewords:9 }}</p>
                             </div>
                         {% endfor %}
-                        {% if category %}
-                            <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'category_detail' category.slug %}">Узнать больше...</a>  
+                        {% if category_data.category %}
+                            <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'category_detail' category_data.category.slug %}">Узнать больше...</a>  
                         {% endif %}
                     </div>
                     
@@ -119,13 +119,218 @@
             </div>
             {% endfor %}
         </div>
-        
     </section>
-
+    <section class="review" id="review">
+        <div class="container review-container">
+            <h2 class="review-subtitle">Отзывы</h2>
+            <h3 class="review-title">We are Experienced in making you very Beautiful</h3>
+            <div class="review-cards">
+                <button class="review-btn" id="prev-review-btn">
+                    <i class="fas fa-chevron-circle-left"></i>
+                </button>
+                <div class="review-cards"  id="review-card-wrapper">
+                    {% for review in reviews %}
+                        <div class="review-card" style="display: none;">
+                            <div class="review-card-text">
+                                {{ review.text }}
+                            </div>
+                            <div class="review-card-footer">
+                                <div class="review-card-user">
+                                    <div class="review-card-user-foto">
+                                        <img src="{{ review.get_image_url }}" alt="{{ review.name }}">
+                                    </div>
+                                    <div class="review-card-user-name">
+                                        <p>{{ review.date }}</p>
+                                        <p><span>{{ review.name }}</span></p>
+                                        <p>{{ review.sity }}</p>
+                                    </div>
+                                </div>
+                                <div class="review-card-decor">
+                                    <div class="review-card-decor-left"></div>
+                                    <div class="review-card-decor-left"></div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="review-btn" id="next-review-btn">
+                    <i class="fas fa-chevron-circle-right"></i>
+                </button>
+            </div>
+            <button class="review-modal featurs-body-card-link hovered-btn shop-btn">Оставить отзыв</button>
+        </div>
+    </section>
+    <section class="awesome" id="awesome">
+        <div class="container awesome-container">
+            <h2 class="awesome-subtitle">Our Awesome Benefits</h2>
+            <h3 class="awesome-title">Actually what you’ll get from</h3>
+            <div class="awesome-content">
+                {% for awesome in awesomes %}
+                    <div class="awesome-content-card">
+                        <div class="awesome-content-card-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="awesome-content-card-text">
+                            <h4>{{ awesome.title }}</h4>
+                            <p>{{ awesome.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="discount" id="discount">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-12 discount-content">
+                    {% if discounts %}
+                        {% for discount in discounts %}
+                            <div class="discount-content-body discount-slide">
+                                <h2 class="discount-content-body-subtitle">{{ discount.title }}</h2>
+                                <h3 class="discount-content-body-title">{{ discount.conditions }}</h3>
+                                <p class="discount-content-body-text">{{ discount.description }}</p>
+                                <div class="discount-content-body-card">
+                                    <div class="left">
+                                        <div class="contact">
+                                            <div class="group">
+                                                <div class="circle"></div>
+                                                <div class="circle"></div>
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="link">
+                                                <p>До конца акции осталось:</p>
+                                                <p>{{ discount.days_left }} дней</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="right">
+                                        {% if discount.percent %}
+                                            <p><span>- Скидка -</span></p> 
+                                            <p>{{ discount.percent }}%</p>
+                                        {% else %}
+                                            <p></p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="discount-content-body">
+                            <h2 class="discount-content-body-subtitle">Давайте знакомиться</h2>
+                            <h3 class="discount-content-body-title">Claim upto 50% off er on ‍the most popular services...</h3>
+                            <p class="discount-content-body-text"></p>
+                            <div class="discount-content-body-card">
+                                <div class="left">
+                                    <div class="contact">
+                                        <div class="group">
+                                            <div class="circle"></div>
+                                            <div class="circle"></div>
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="link">
+                                            <p>Наш телефон</p>
+                                            <a href="tel:8(938) 479-63-01">8(938) 479-63-01</a>
+                                        </div>
+                                    </div>
+                                    <div class="contact">
+                                        <div class="group">
+                                            <div class="circle"></div>
+                                            <div class="circle"></div>
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="link">
+                                            <p>Наш телефон</p>
+                                            <a href="tel:8(952) 414-30-01">8(952) 414-30-01</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-xl-6 col-lg-12 ">
+                    <div class="discount-form">
+                        
+                        
+                        <form class="discount-form-body" action="#">
+                            <div class="discount-form-body-tag">
+                                <label for="name">
+                                    <i class="fa-regular fa-user"></i>
+                                    <span>Имя</span>
+                                </label>
+                                <input type="text" name="name" id="name">
+                            </div>
+                            <div class="discount-form-body-tag">
+                                <label for="city">
+                                    <i class="fa-solid fa-building"></i>
+                                    <span>Город</span>
+                                </label>
+                                <input type="text" name="city" id="city">
+                            </div>
+                            <div class="discount-form-body-tag">
+                                <label for="phone">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>Телефон</span>
+                                </label>
+                                <input type="text" name="phone" id="phone">
+                            </div>
+                            <div class="discount-form-body-tag">
+                                <label for="text">
+                                    <i class="fa-solid fa-pencil"></i>
+                                    <span>Сообщение</span>
+                                </label>
+                                <textarea name="text" id="text"></textarea>
+                            </div>
+                            <div class="discount-form-body-tag">
+                                <input type="submit" name="send" id="send" placeholder="Отправить">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.querySelectorAll('.discount-form-body-tag input, .discount-form-body-tag textarea').forEach((input) => {
+            const label = input.previousElementSibling;
+        
+            // Функция для сдвига и уменьшения label
+            const moveLabel = () => {
+                label.style.position = 'absolute';
+                label.style.top = '0';
+                label.style.left = '10px';
+                label.style.fontSize = '12px';
+                label.style.transition = 'all 0.3s ease';
+            };
+        
+            // Функция для возвращения label
+            const resetLabel = () => {
+                if (!input.value) {  // Если поле пустое
+                    label.style.position = 'absolute';
+                    label.style.top = '65%';
+                    label.style.left = '10px';
+                    label.style.fontSize = '18px';
+                    label.style.transform = 'translateY(-50%)';
+                }
+            };
+        
+            // Обработка событий
+            input.addEventListener('focus', moveLabel);
+            input.addEventListener('blur', resetLabel);
+        
+            // Проверка на заполненность при загрузке страницы
+            if (input.value) {
+                moveLabel();  // Если поле уже заполнено, смещаем label
+            }
+        });
+        </script>
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static 'script/sliderText.js' %}"></script>
+    <script src="{% static 'script/salideReview.js' %}"></script>
     <script src="{% static 'script/loadAboutDetail.js' %}"></script>
 {% endblock %}
 
