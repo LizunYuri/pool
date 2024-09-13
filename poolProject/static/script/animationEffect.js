@@ -15,6 +15,9 @@ const reviewCard = document.querySelectorAll('.review-card')
 const awesomeTitle = document.querySelector('.awesome-title')
 const awesomeSubtitle = document.querySelector('.awesome-subtitle')
 const awesomeCard =  document.querySelectorAll('.awesome-content-card')
+const blogSubtitle = document.querySelector('.blog-container-subtitle')
+const blogTitle = document.querySelector('.blog-container-title')
+const blogCard = document.querySelectorAll('.blog-content-card')
 
 const opacityEffect = (content, timing, effect, delay, percent) => {
     content.forEach((e, index) => {
@@ -46,7 +49,7 @@ const handleScroll = () => {
         featursCards,
         600, 
         'opacity-card', 
-        500,
+        200,
         0.2
     );
 
@@ -54,7 +57,7 @@ const handleScroll = () => {
         aboutIcons, 
         700,
         'about-opacity',
-        500,
+        300,
         0.2
     );
 
@@ -169,9 +172,27 @@ const handleScroll = () => {
         0.1
     );
 
+    loadEffect(
+        blogSubtitle,
+        500,
+        'about-opacity',
+        0.1
+    );
+
+    loadEffect(
+        blogTitle,
+        500,
+        'about-opacity',
+        0.1
+    );
+    opacityEffect(
+        blogCard, 
+        900,
+        'about-opacity',
+        100,
+        0.1
+    );
 };
-
-
 
 window.addEventListener('DOMContentLoaded', () => {
     handleScroll();

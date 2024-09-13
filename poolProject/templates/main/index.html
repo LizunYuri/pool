@@ -91,7 +91,7 @@
     <section class="shop" id="shop">
         <div class="container shop-container">
             <h2 class="shop-top-subtitle">Наша продукция</h2>
-            <h3 class="shop-top-title">We are Experienced in making you very Beautiful</h3>
+            <h3 class="shop-top-title">Пожалуй лучшие бассейны России</h3>
             {% for category_data in categories_with_products %}
             <div class="row shop-content">
                 <div class="col-xl-6 col-lg-12 shop-img">
@@ -162,7 +162,7 @@
     </section>
     <section class="awesome" id="awesome">
         <div class="container awesome-container">
-            <h2 class="awesome-subtitle">Our Awesome Benefits</h2>
+            <h2 class="awesome-subtitle">Почему стоит выбрать нас</h2>
             <h3 class="awesome-title">Actually what you’ll get from</h3>
             <div class="awesome-content">
                 {% for awesome in awesomes %}
@@ -250,10 +250,8 @@
                         </div>
                     {% endif %}
                 </div>
-                <div class="col-xl-6 col-lg-12 ">
+                <div class="col-xl-6 col-lg-12 discount-flex">
                     <div class="discount-form">
-                        
-                        
                         <form class="discount-form-body" action="#">
                             <div class="discount-form-body-tag">
                                 <label for="name">
@@ -292,6 +290,35 @@
             </div>
         </div>
     </section>
+    <section class="blog" id="blog">
+       <div class="container blog-container">
+        <h2 class="blog-container-subtitle">Наш блог</h2>
+        <h3 class="blog-container-title">Истории о бассейнах</h3>
+        <div class="blog-content">
+            {% for blog in blogs %}
+                <a href="{% url 'blog_detail' blog.slug %}">
+                    <div class="blog-content-card">
+                        <div class="blog-content-card-img">
+                            <img src="{{ blog.get_image_url }}" alt="{{ blog.title }}">
+                        </div>
+                        <div class="blog-content-card-text">
+                            <div class="date">
+                                <p>{{ blog.pub_date }}</p>
+                                <div class="line"></div>
+                                <p>{{ blog.theme|truncatewords:1 }}</p>
+                            </div>
+                            <h6>{{ blog.title }}</h6>
+                            <p>{{ blog.text|truncatewords:15 }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'blogs' %}">Больше историй</a>    
+       </div> 
+    </section>
+
+
     <script>
         document.querySelectorAll('.discount-form-body-tag input, .discount-form-body-tag textarea').forEach((input) => {
             const label = input.previousElementSibling;
@@ -325,10 +352,12 @@
                 moveLabel();  // Если поле уже заполнено, смещаем label
             }
         });
-        </script>
+    </script>
+
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% static 'script/animationEffect.js' %}"></script>
     <script src="{% static 'script/sliderText.js' %}"></script>
     <script src="{% static 'script/salideReview.js' %}"></script>
     <script src="{% static 'script/loadAboutDetail.js' %}"></script>

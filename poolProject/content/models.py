@@ -22,7 +22,6 @@ class FirstPageTitleModel(models.Model):
         verbose_name = 'Контент первой страницы'
         verbose_name_plural = 'Управление баннером (информация первого экрана)'
 
-
 class FirstPageAboutModel(models.Model):
     title = models.CharField(max_length=100,
                              help_text='не больше 100 символов, включая пробелы и знаки припенания',
@@ -89,3 +88,40 @@ class FirstPageAwesomeModel(models.Model):
 
     def __str__(self):
         return self.title
+
+class AboutValuesModel(models.Model):
+    title = models.CharField(max_length=100,
+                             help_text='не больше 100 символов, включая пробелы и знаки припенания',
+                             verbose_name='Заголовок пункта "О нас"')
+    
+    description = models.CharField(max_length=300,
+                                help_text='не больше 500, включая пробелы и знаки припенания',
+                                verbose_name='Описание блока "О нас"')
+    icon = models.ImageField(upload_to='content/icons/values',
+                             verbose_name='Иконка',
+                             help_text='Использовать без фона')
+    
+
+    def delete(self, *args, **kwargs):
+        if self.icon:
+            
+            try:
+                if os.path.isfile(self.icon.path):
+                    os.remove(self.icon.path)
+            except Exception as e:
+                print(f"Ошибка при удалении файла: {e}")
+        
+        # Вызываем стандартное удаление объекта
+        super().delete(*args, **kwargs)
+    
+    def get_icon_url(self):
+        if self.icon:
+            return self.icon.url
+        return None
+
+    def __str__(self):
+        return self.title
+    
+    class Meta: 
+        verbose_name = 'Ценность'
+        verbose_name_plural = 'Ценности компании( отображается на странице "О нас")'

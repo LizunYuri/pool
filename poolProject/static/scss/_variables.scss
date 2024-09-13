@@ -1,19 +1,4 @@
-@font-face {
-    font-family: 'Manrope';
-    src: url(../fonts/Manrope.ttf);
-}
 
-@font-face {
-    font-family: 'Play fair';
-    src: url(../fonts/PlayfairDisplay-Regular.ttf);
-    font-weight: normal;
-}
-
-@font-face {
-    font-family: 'Play fair';
-    src: url(../fonts/PlayfairDisplay-Bold.ttf);
-    font-weight: bold;
-}
 
 // colors
 $color-bg: rgb(92, 134, 146);
@@ -101,6 +86,7 @@ $color-white: rgba(255, 255, 255, 1);
     max-width: 659px;
     padding-bottom: 36px;
     transition: all .5s ease;
+    text-align: center;
 
 }
 
@@ -115,4 +101,39 @@ $color-white: rgba(255, 255, 255, 1);
     text-transform: uppercase;
     padding-bottom: 38px;
     transition: all .5s ease;
+}
+
+@mixin page-title{
+
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background: $color-dark-bg;
+        &-container{
+            max-width: 659px;
+            margin-top: 76px;
+            margin-bottom: 76px;
+            display: flex;
+            flex-direction: column;
+            color: $color-white;
+             & > h1{
+                font-family: 'Manrope';
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 23.17px;
+                letter-spacing: 0.1em;
+                text-align: center;
+                text-transform: uppercase;
+                padding-bottom: 36px;
+            }
+            & > h2 {
+                font-family: 'Play fair';
+                font-size: 55px;
+                font-weight: 700;
+                line-height: 66px;
+                letter-spacing: -0.01em;
+                text-align: center;
+
+            }
+        }
 }

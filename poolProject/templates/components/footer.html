@@ -1,0 +1,68 @@
+{% load static %}
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer-logo">
+            <a class="footer-logo-link" href="https://poolkuban.ru">
+                <img src="{% static 'img/logo/rak.png' %}" alt="">
+                <h6>Акватехпласт</h6>
+            </a>
+            <div class="footer-icons">
+                <a href="#">
+                    <i class="fa-brands fa-vk"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-at"></i>
+                </a>
+                
+            </div>
+        </div>
+        <div class="footer-body">
+            <div class="footer-body-explorer">
+                <p>Навигация:</p>
+                <nav>
+                    <ul>
+                        <li class="header-effect block"><a href="{% url 'about' %}">О нас</a></li>
+                        <li class="header-effect block"><a href="{% url 'blogs' %}">Истории</a></li>
+                        <li class="header-effect block"><a href="#">shop</a></li>
+                        <li class="header-effect block"><a href="#">services</a></li>
+                        <li class="header-effect block"><a href="#">contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-body-explorer">
+                <p>Информация:</p>
+                    <ul>
+                        <li class="header-effect block"><a href="#">home</a></li>
+                        <li class="header-effect block"><a href="#">blog</a></li>
+                        <li class="header-effect block"><a href="#">shop</a></li>
+                        <li class="header-effect block"><a href="#">services</a></li>
+                        <li class="header-effect block"><a href="#">contact</a></li>
+                    </ul>
+            </div>
+            <div class="footer-address">
+                <h6>Контакты:</h6>
+                <p><span>Адрес:</span>г. Краснодар, ул. Симферопольская, д.62, оф. 212, 2 этаж</p>
+                <p><span>Электронная почта:</span><a class="header-title-tel" href="mailto:bassein23@yandex.ru">bassein23@yandex.ru</a></p>
+                <p><span>Телефон:</span><a class="header-title-tel" href="tel:89534143001">тел. 8(952)414-30-01</a></p>
+                <p><span>Телефон:</span><a class="header-title-tel" href="tel:+79384796301">тел. 8(938) 479-63-01</a></p>
+            </div>
+            <div class="footer-working">
+                <h6>Мы работаем:</h6>
+                <p><span>пн-пт:</span>с 9 до 18</p>
+                <p><span>сб, вс:</span>Выходной</p>
+
+                <button class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+       &copy; &nbsp;&nbsp;2024 &nbsp;&nbsp;"АкваТехПласт"  &nbsp;&nbsp;ИП Чечеткин В. В. &nbsp;&nbsp; ИНН 344603568845 
+    </div>
+</footer>
+

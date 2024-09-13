@@ -1,6 +1,6 @@
 # myapp/admin.py
 from django.contrib import admin
-from .models import FirstPageTitleModel, FirstPageAboutModel, FirstPageAwesomeModel
+from .models import AboutValuesModel, FirstPageTitleModel, FirstPageAboutModel, FirstPageAwesomeModel
 
 @admin.register(FirstPageTitleModel)
 class FirstPageTitleModelAdmin(admin.ModelAdmin):
@@ -20,7 +20,7 @@ class FirstPageAboutModelAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        # Сортируем по ID, если необходимо
+
         return queryset.order_by('id')
     
 
@@ -31,7 +31,7 @@ class FirstPageAwesomeModelAdmin(admin.ModelAdmin):
     search_fields = ('title', 'text')
 
     def has_add_permission(self, request):
-        # Отключаем возможность создания записи, если существует 3 записи
+
         return FirstPageAwesomeModel.objects.count() < 6
 
     def get_queryset(self, request):
@@ -39,3 +39,9 @@ class FirstPageAwesomeModelAdmin(admin.ModelAdmin):
         # Сортируем по ID, если необходимо
         return queryset.order_by('id')
 
+
+
+@admin.register(AboutValuesModel)
+class AboutValuesModelAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    search_fields = ('title',)

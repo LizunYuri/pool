@@ -25,7 +25,6 @@ const changeSlide = () => {
 
 
     const sliderText = () => {
-        console.log(`Changing text slide to index: ${currentContentIndex}`);
     
         discountSlide.forEach((slide) => {
             slide.classList.remove('discount-active');
