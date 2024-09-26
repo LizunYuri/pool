@@ -12,6 +12,51 @@
   src: url(../fonts/PlayfairDisplay-Bold.ttf);
   font-weight: bold;
 }
+.cycle-objects-card {
+  opacity: 0;
+  -webkit-transform: translateX(-40px);
+      -ms-transform: translateX(-40px);
+          transform: translateX(-40px);
+  -webkit-transform: translateZ(-40px);
+          transform: translateZ(-40px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-subtitle {
+  opacity: 0;
+  -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+          transform: translateY(-20px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-title {
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+      -ms-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-img {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.fade-element {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -52,6 +97,10 @@ input, button, textarea {
   background: transparent;
   border: none;
   outline: none;
+}
+
+main {
+  position: relative;
 }
 
 .breadcrumb {
@@ -1567,8 +1616,14 @@ input, button, textarea {
             justify-content: center;
   }
   .discount-content-body {
-    position: relative;
+    position: absolute;
+    height: 400px;
+    top: 0;
+    left: 10px;
     margin-bottom: 36px;
+  }
+  .discount-form {
+    margin-top: 436px;
   }
 }
 @media (max-width: 768px) {
@@ -1667,12 +1722,13 @@ input, button, textarea {
     margin-top: 23px;
   }
   .discount-form {
-    width: 360px;
-    margin-top: 36px;
-    padding: 43px 25px 46px 25px;
+    width: 325px;
   }
   .discount-form-body {
     width: 300px;
+  }
+  .discount-form-body-tag > input, .discount-form-body-tag > textarea {
+    width: 75%;
   }
 }
 @-webkit-keyframes slideInFromLeft {

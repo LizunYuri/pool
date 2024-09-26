@@ -1,0 +1,71 @@
+{% extends "components/base.html" %}
+{% for blog in blog  %}
+{% block title %}АкваТехПласт | {{ blog.title}} | Краснодар {% endblock %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blog_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <section class="blog-main" id="blog-main">
+        <div class="container blog-main-container">
+            <h2 class="cycle-objects-title">{{ blog.theme|truncatewords:3 }}</h2>
+            <h1 class="cycle-objects-subtitle">{{ blog.title }}</h1>
+        </div>
+    </section>
+    <section class="blog-cover" id="blog-cover">
+        <div class="container blog-cover-container">
+            <img class="cycle-objects-img" src="{{ blog.get_image_url }}" alt="{{ blog.title }}">
+        </div>
+    </section>
+    <section class="blog-content" id="blog-content">
+        <div class="container">
+            <div class="row blog-content-flex">
+                <div class="col-xl-4 col-lg-12">
+                    <div class="blog-content-persona cycle-objects-subtitle">
+                        <div class="blog-content-persona-author ">
+                            <div class="blog-content-persona-author-img">
+                                <img src="{{ blog.author.get_image_url }}" alt="{{ blog.author.name }}">
+                            </div>
+                            <div class="blog-content-persona-author-name">
+                                <p>
+                                    <span>Автор: {{ blog.author.name }}</span>
+                                </p>
+                                <p>{{ blog.author.job_title }}</p>
+                            </div>
+                        </div>
+                        <p>{{ blog.author.quote }}</p>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-12">
+                    <div class="blog-content-text">
+                        <h3 class="cycle-objects-subtitle">{{ blog.subtitle|truncatewords:5 }}</h3>
+                        <p class="cycle-objects-title">{{ blog.text|linebreaks }}</p>
+                    </div>
+                    <div class="blog-content-note-img  cycle-objects-card">
+                        <img src="{{ blog.get_image_note_url }}" alt="{{ blog.title }}">
+                    </div>
+                    {% if blog.note %}
+                        <div class="blog-content-note cycle-objects-title">
+                            <div class="left"></div>
+                            <div class="right">
+                                    <p>{{ blog.note|linebreaks }}</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div></div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+{% endblock %}
+
+{% endfor %}

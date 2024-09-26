@@ -19,7 +19,7 @@ const cycleEffectCard = (content, timing, effect, delay, percent) => {
 
 const cycleEffectFade = (content, timeout, effect, percent) => {
     content.forEach((e) => {
-        const position = e.getBoundingClientRect(); // Исправлено на e
+        const position = e.getBoundingClientRect();
         const positionElement = position.top + position.height * percent;
 
         if (positionElement < window.innerHeight) {

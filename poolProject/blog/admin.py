@@ -10,7 +10,7 @@ class ThemeBlogModelAdmin(admin.ModelAdmin):
 
 @admin.register(BlogModel)
 class BlogModelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pub_date', 'publish',)
-    search_fields = ('title', 'pub_date', 'theme')
-    list_filter = ('title', 'pub_date', 'theme', 'publish')
+    list_display = ('title', 'pub_date', 'publish', 'author')
+    search_fields = ('title', 'pub_date', 'theme', 'author')
+    list_filter = ('title', 'pub_date', 'theme', 'publish', 'author')
     prepopulated_fields = {"slug": ("title",)}

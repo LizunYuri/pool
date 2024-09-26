@@ -11,8 +11,8 @@
 
     <section class="reservation" id="reservation">
         <div class="container reservation-container">
-            <h1 class="cycle-objects-subtitle">немного о нас</h1>
-            <h2 class="cycle-objects-title">The big story behind, our beautyness center</h2>
+            <h2 class="cycle-objects-subtitle">немного о нас</h2>
+            <h1 class="cycle-objects-title">The big story behind, our beautyness center</h1>
         </div>
     </section>
     <section class="values" id="values">
@@ -79,6 +79,23 @@
             </div>
         </div>
     </section>
+    {% if sertificates_exist %}
+        <section class="sertificate" id="sertificate">
+            <div class="container sertificate-container">
+                <h3 class="cycle-objects-subtitle">Дипломы и сертификаты</h3>
+                <h4 class="cycle-objects-title">Только профессионалы своего дела</h4>
+                <div class="sertificate-content">
+                    {% for sertificate in sertificates %}
+                        <div class="sertificate-content-card">
+                            <img src="{{ sertificate.get_image_url }}" alt="{{ setrificate.title }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <div></div>
+    {% endif %}
 
 {% endblock %}
 

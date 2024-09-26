@@ -1,8 +1,46 @@
 {% extends "components/base.html" %}
+
 {% block title %}АкваТехПласт | Истории | Краснодар {% endblock %}
 
 {% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="blogs" id="blogs">
+        <div class="container blogs-container">
+            <h2 class="cycle-objects-title">Истории о бассейнах</h2>
+            <h1 class="cycle-objects-subtitle">Полезная информация и новости из мира бассейнов</h1>
+        </div>
+    </section>
+    <section class="blogs-filter"> 
+        <div class="container blogs-filter-container">
+            <form id="filter-form">
+                {{ filter_form.as_p }}
+                
+            </form>
+        </div>
+    </section>
+    <section>
+        <div class="container blogs-content" id="articles-container">
+            {% include 'blog/_blog_list_partial.html' with page_obj=page_obj %}
+        </div>
+    </section>
+
+    <div class="blogs-btn">
+        <button id="load-more" class="btn featurs-body-card-link hovered-btn">Показать еще</button>
+        <div id="loading" style="display: none;">Загрузка...</div>
+        <div id="end-of-content" style="display: none;">Нет больше записей.</div>
+    </div>
+
     
-{% comment %} {% block style %}
-    <link rel="stylesheet" href="{% static 'css/about.css' %}">
-{% endblock %} {% endcomment %}
+
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+    
+{% endblock %}

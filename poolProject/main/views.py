@@ -2,10 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from content.models import AboutValuesModel, FirstPageTitleModel, FirstPageAboutModel, FirstPageAwesomeModel
 from catalog.models import ServicesModel, ShopCategoryModel, ShopElementModel, DiscountModel
 from review.models import ReviewModel
-from blog.models import BlogModel
-from company.models import PersonalModel
+from blog.models import BlogModel, ThemeBlogModel
+from company.models import PersonalModel, SertificatesModel
 from django.http import JsonResponse
 from datetime import date
+from django.core.paginator import Paginator
+from django.template.loader import render_to_string
+from blog.form import BlogFilterForm
 
 
 def index(request):
@@ -19,6 +22,7 @@ def index(request):
     blogs = BlogModel.objects.filter(publish=True)[:3]
     today = date.today()
     
+
     breadcrumbs = [
         {"name": "Главная", "url": "/"},
     ]
@@ -49,7 +53,6 @@ def index(request):
                                                })
 
 
-
 def service_detail(request, pk):
     service = get_object_or_404(ServicesModel, pk=pk)
 
@@ -59,14 +62,22 @@ def service_detail(request, pk):
 def about(request):
     values = AboutValuesModel.objects.all()
     personal = PersonalModel.objects.all()
+    sertificates = SertificatesModel.objects.all()
+
+    sertificates_exist = sertificates.exists()  # Проверяем наличие записей
+
     breadcrumbs = [
         {"name": "Главная", "url": "/"},
-        {"name" : "О нас", "url" : 'about/'}
+        {"name": "О нас", "url": 'about/'}
     ]
 
-    return render(request, 'main/about.html', {'values' : values,
-                                               'personal' : personal,
-                                               'breadcrumbs': breadcrumbs,})
+    return render(request, 'main/about.html', {
+        'values': values,
+        'personal': personal,
+        'breadcrumbs': breadcrumbs,
+        'sertificates': sertificates,
+        'sertificates_exist': sertificates_exist  # Передаем в шаблон
+    })
 
 
 def about_detail(request, pk):
@@ -76,8 +87,6 @@ def about_detail(request, pk):
     return render(request, 'components/about_detail.html', {'about_detail': about_detail})
 
 
-
-
 def category_detail(request, slug):
 
     category = get_object_or_404(ShopCategoryModel, slug=slug)
@@ -85,14 +94,76 @@ def category_detail(request, slug):
     
     return render(request, 'catalog/category_detail.html', {'category': category, 'products': products})
 
+
 def blogs(request):
+    blogs = BlogModel.objects.all().order_by('-pub_date')
+    paginator = Paginator(blogs, 3)
+
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+
     breadcrumbs = [
         {"name": "Главная", "url": "/"},
-        {"name": "Истории", "url" : 'blogs/'}
+        {"name": "Истории", "url": 'blogs/'}
     ]
-    return render(request, 'blog/blog.html', {'breadcrumbs' : breadcrumbs})
+
+    # Передаем page_obj в шаблон
+    return render(request, 'blog/blog.html', {
+        'page_obj': page_obj,
+        'breadcrumbs': breadcrumbs,
+    })
+
+
+def blog_list(request):
+    blogs = BlogModel.objects.all().order_by('-pub_date')
+
+    form = BlogFilterForm()
+
+    paginator = Paginator(blogs, 3)
+
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+
+    # Если это AJAX запрос, возвращаем только HTML записей
+    if request.is_ajax():
+        html = render_to_string('blog/_blog_list_partial.html', {'page_obj': page_obj})
+
+        return JsonResponse({
+            'blogs': html,
+            'has_next': page_obj.has_next()
+        })
+    
+
+
+    # Для обычных запросов рендерим всю страницу
+    breadcrumbs = [
+        {"name": "Главная", "url": "/"},
+        {"name": "Истории", "url": 'blogs/'}
+    ]
+
+    return render(request, 'blog/blog.html', {
+        'page_obj': page_obj,
+        'form' : form,
+        'breadcrumbs': breadcrumbs,
+    })
+
+
 
 def blog_detail(request, slug):
     blog = get_object_or_404(BlogModel, slug=slug)
+    
+    form = BlogFilterForm()
 
-    return render(request, 'blog/blog_detail.html', {'blog' : blog})
+    breadcrumbs = [
+        {"name": "Главная", "url": "/"},
+        {"name": "Истории", "url" : f"/blogs/"},
+        {"name": blog.title, "url": request.path},
+    ]
+
+    return render(request, 'blog/blog_detail.html', {'blog' : blog,
+                                                     'breadcrumbs' : breadcrumbs})
+
+
+def catalog(request):
+    
+    return render(request, 'catalog/catalog.html')

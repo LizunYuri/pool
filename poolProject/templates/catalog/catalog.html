@@ -1,0 +1,24 @@
+{% extends "components/base.html" %}
+
+{% block title %}АкваТехПласт | Истории | Краснодар {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="blogs" id="blogs">
+        <div class="container blogs-container">
+            <h2 class="cycle-objects-title">Бассейны и не только</h2>
+            <h1 class="cycle-objects-subtitle">Каталог бассейнов и оборудования</h1>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+    
+{% endblock %}

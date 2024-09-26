@@ -3,6 +3,9 @@
 @import 'variables';
 @import 'reset';
 
+main{
+    position: relative;
+}
 
 .breadcrumb{
     width: 100%;
@@ -1080,9 +1083,15 @@
         }
     }
     .discount-content-body{
-        position: relative;
+        position: absolute;
+        height: 400px;
+        top: 0;
+        left: 10px;
         margin-bottom: 36px;
     } 
+    .discount-form{
+        margin-top: 436px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1174,12 +1183,13 @@
         }
     } 
     .discount-form{
-        width: 360px;
-        margin-top: 36px;
-        padding: 43px 25px 46px 25px;
+        width: 325px;
         &-body{
             width: 300px;
         }
+    }
+    .discount-form-body-tag > input, .discount-form-body-tag > textarea{
+        width: 75%;
     }
 
 }
