@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'catalog',
     'review',
     'blog',
-    'company'
+    'company',
+    'django_json_widget',
 
 ]
 

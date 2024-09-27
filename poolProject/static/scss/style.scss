@@ -1008,6 +1008,87 @@ main{
     
 }
 
+.filter-record{
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-bottom: 4px solid $color-dark-bg;
+    &-container{
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    &-card{
+        // flex: 1 1;
+        margin-bottom: 23px;
+        padding-right: 12px;
+        padding-left: 12px;
+        transition: all .3s ease;
+    }
+    &-buttons{
+        position: relative;
+        font-family: 'Manrope';
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 17.5px;
+        letter-spacing: 0.12em;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 18px 43px 19px 43px;
+        border: 2px solid $color-bg;
+        overflow: hidden;
+        transition: all 1s ease;
+    }
+    &-form{
+        display: flex;
+        flex-direction: column;
+        &-option {
+            position: relative;
+            font-family: 'Manrope';
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 17.5px;
+            letter-spacing: 0.12em;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 18px 33px 19px 33px;
+            border: 2px solid $color-bg;
+            overflow: hidden;
+            transition: all 1s ease;
+        }
+        &-label{
+            position: relative;
+            font-family: 'Manrope';
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 17.5px;
+            letter-spacing: 0.12em;
+            text-align: right;
+            padding-bottom: 8px;
+        }
+    }
+}
+
+
+.filter-record-buttons::before{
+    content: '';
+    width: 30%;
+    height: 300%;
+    background: linear-gradient(90deg, rgba(122,156,165,0.1) 0%, rgba(122,156,165,0.2) 25%, rgba(92,134,146,0.3) 50%, rgba(122,156,165,0.2) 75%, rgba(122,156,165,0.1) 100%);
+    position: absolute;
+    top: -100%;
+    left: -70%;
+    transform: rotate(45deg);
+    transition: all .7s ease;
+}
+.filter-record-buttons:hover{
+    transform: scale(1.03);
+    // filter: invert(50%) contrast(200%);
+}
+
+.filter-record-buttons:hover::before{
+    left: 130%;
+}
 @media (max-width: 1440px) {
     .welcome{
         &-left{

@@ -1,6 +1,8 @@
 
 const elements = document.querySelectorAll('.shop-content');
 const blocks = document.querySelectorAll('.shop-list .block');
+const servicesCard = document.querySelectorAll('.services-description-content')
+const servicesCardImage = document.querySelectorAll('.services-description-img')
 
 
 const positionBlocks = () => {
@@ -30,9 +32,25 @@ const positionBlocks = () => {
     }
 }
 
+const addReverseEffect = () => {
+    servicesCard.forEach((e, index) => {
+        if ((index + 1) % 2 === 0) {
+            e.classList.add('reverse-content');
+            
+            // Найдем изображение внутри этого блока и добавим класс
+            const img = e.querySelector('.services-description-img');
+            if (img) {
+                img.classList.add('reverse-img');
+            }
+        }
+    });
+}
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
     positionBlocks()
+    addReverseEffect()
 })
 
 

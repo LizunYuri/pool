@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from datetime import date
 from django.core.paginator import Paginator
 from django.template.loader import render_to_string
-from blog.form import BlogFilterForm
+from blog.form import BlogFilterForm, BlogThemeFilter
 
 
 def index(request):
@@ -52,11 +52,30 @@ def index(request):
                                                'breadcrumbs': breadcrumbs,
                                                })
 
+def services(request):
+    services = ServicesModel.objects.all()
+
+    breadcrumbs = [
+        {"name": "Главная", "url": "/"},
+        {"name": "Услуги", "url": 'services/'}
+    ]
+
+    return render(request, 'services/services.html', {'services' : services,
+                                                      'breadcrumbs' : breadcrumbs})
+
 
 def service_detail(request, pk):
+
     service = get_object_or_404(ServicesModel, pk=pk)
 
-    return render(request, 'catalog/services_detail.html', {'service' : service})
+    breadcrumbs = [
+        {"name": "Главная", "url": "/"},
+        {"name": "Услуги", "url" : f"/services/"},
+        {"name": service.title, "url": request.path},
+    ]
+
+    return render(request, 'services/services_detail.html', {'service' : service,
+                                                             'breadcrumbs' : breadcrumbs})
 
 
 def about(request):
@@ -94,66 +113,61 @@ def category_detail(request, slug):
     
     return render(request, 'catalog/category_detail.html', {'category': category, 'products': products})
 
-
 def blogs(request):
-    blogs = BlogModel.objects.all().order_by('-pub_date')
-    paginator = Paginator(blogs, 3)
+    
+    authors = PersonalModel.objects.all()
+    theme =ThemeBlogModel.objects.all()
 
+    sort = request.GET.get('sort', 'desc')
+    author_id = request.GET.get('author')
+    theme_id = request.GET.get('theme')
+
+    # Получаем базовый QuerySet блогов
+    blogs = BlogModel.objects.all()
+
+    # Если выбран автор, фильтруем по автору
+    if author_id:
+        blogs = blogs.filter(author_id=author_id)
+
+    if theme_id:
+        blogs = blogs.filter(theme_id=theme_id)
+
+    # Применяем сортировку
+    if sort == 'asc':
+        blogs = blogs.order_by('pub_date')
+    else:
+        blogs = blogs.order_by('-pub_date')
+
+    paginator = Paginator(blogs, 3)  # Пагинация по 3 записи
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
 
-    breadcrumbs = [
-        {"name": "Главная", "url": "/"},
-        {"name": "Истории", "url": 'blogs/'}
-    ]
-
-    # Передаем page_obj в шаблон
-    return render(request, 'blog/blog.html', {
-        'page_obj': page_obj,
-        'breadcrumbs': breadcrumbs,
-    })
-
-
-def blog_list(request):
-    blogs = BlogModel.objects.all().order_by('-pub_date')
-
-    form = BlogFilterForm()
-
-    paginator = Paginator(blogs, 3)
-
-    page_number = request.GET.get('page', 1)
-    page_obj = paginator.get_page(page_number)
-
-    # Если это AJAX запрос, возвращаем только HTML записей
     if request.is_ajax():
         html = render_to_string('blog/_blog_list_partial.html', {'page_obj': page_obj})
-
         return JsonResponse({
             'blogs': html,
             'has_next': page_obj.has_next()
         })
-    
 
+    form = BlogFilterForm()
+    theme_form = BlogThemeFilter
 
-    # Для обычных запросов рендерим всю страницу
     breadcrumbs = [
         {"name": "Главная", "url": "/"},
         {"name": "Истории", "url": 'blogs/'}
     ]
 
+
     return render(request, 'blog/blog.html', {
         'page_obj': page_obj,
-        'form' : form,
+        'form': form,
+        'theme_form' : theme_form,
         'breadcrumbs': breadcrumbs,
     })
-
-
 
 def blog_detail(request, slug):
     blog = get_object_or_404(BlogModel, slug=slug)
     
-    form = BlogFilterForm()
-
     breadcrumbs = [
         {"name": "Главная", "url": "/"},
         {"name": "Истории", "url" : f"/blogs/"},
@@ -165,5 +179,24 @@ def blog_detail(request, slug):
 
 
 def catalog(request):
+
+    categories = ShopCategoryModel.objects.all()
+
+    categories_with_products = []
     
-    return render(request, 'catalog/catalog.html')
+    for category in categories:
+        products = ShopElementModel.objects.filter(category=category)[:3]
+        if products.exists():
+            categories_with_products.append({
+                'category' : category,
+                'products' : products})
+            
+    breadcrumbs = [
+        {"name": "Главная", "url": "/"},
+        {"name": "Бассейны и оборудование", "url": 'catalog/'}
+    ]
+
+    
+    return render(request, 'catalog/catalog.html', {'breadcrumbs' : breadcrumbs,
+                                                    'categories_with_products' : categories_with_products,})
+

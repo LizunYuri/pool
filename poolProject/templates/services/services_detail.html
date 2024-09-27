@@ -1,0 +1,95 @@
+{% extends "components/base.html" %}
+
+{% block title %}АкваТехПласт | {{ service.title }} | Краснодар {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="blogs">
+        <div class="container blogs-container">
+            <h2 class="cycle-objects-title">{{ service.subtitle }}</h2>
+            <h1 class="cycle-objects-subtitle">{{ service.title }}</h1>
+        </div>
+    </section>
+    <section class="service-detail">
+        <div class="service-detail-right cycle-objects-img">
+            <img src="{{ service.get_image_url }}" alt="{{ service.title }}">
+        </div>
+        <div class="container">
+            <div class="col-xl-6 col-lg-12 service-detail-left">
+                <h3 class="cycle-objects-subtitle">{{ service.includes }}</h3>
+                <h4 class="cycle-objects-title">{{ service.adouts  }}</h4>
+                <p class="cycle-objects-img">{{ service.description }}</p>
+                <div class="service-detail-steps">
+                    <h5 class="cycle-objects-subtitle">Включает в себя</h5>
+                    {% for step in service.methodology %}
+                    <div class="service-detail-card cycle-objects-card">
+                        <div class="icon">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M34.3333 16.1429V17.6762C34.3313 21.2702 33.1675 24.7673 31.0156 27.6459C28.8636 30.5245 25.8388 32.6303 22.3923 33.6494C18.9457 34.6684 15.2621 34.546 11.8908 33.3005C8.51947 32.055 5.64109 29.753 3.68493 26.738C1.72878 23.7229 0.799652 20.1563 1.03613 16.5701C1.2726 12.9838 2.66201 9.57008 4.99713 6.83799C7.33225 4.1059 10.488 2.20184 13.9936 1.40978C17.4993 0.617723 21.1671 0.980101 24.45 2.44287M34.3337 4.34277L17.667 21.0261L12.667 16.0261" stroke="#7A9CA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="text">
+                            <p>{{ step.step_number }}</p>
+                            <p><span>{{ step.description }}</span></p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="service-form">
+            <h5>Подробнее</h5>
+            <h6>Остались вопросы? Мы Вам перезвоним</h6>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, quidem? Laboriosam ex laudantium sed laborum, qui esse aspernatur quae fugiat deleniti sit fuga consequuntur assumenda veniam, distinctio repellat quod ea.</p>
+            
+        <div class="container service-form-container">
+            <div class="service-form-form">
+                <form class="" action="#">
+                    <div class="service-form-body">
+                        <div class="service-form-block">
+                            <div class="service-form-body-tag">
+                                <label for="name">
+                                    <i class="fa-regular fa-user"></i>
+                                    <span>Имя</span>
+                                </label>
+                                <input type="text" name="name" id="serviceName">
+                            </div>
+                            <div class="service-form-body-tag">
+                                <label for="city">
+                                    <i class="fa-solid fa-building"></i>
+                                    <span>Город</span>
+                                </label>
+                                <input type="text" name="city" id="serviceSity">
+                            </div>
+                        </div>
+                        <div class="service-form-block">
+                            <div class="service-form-body-tag">
+                                <label for="phone">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>Телефон</span>
+                                </label>
+                                <input type="text" name="phone" id="phone">
+                            </div>
+                            <div class="service-form-body-tag">
+                                <input type="submit" name="send" id="" placeholder="Отправить">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+{% endblock %}
+
+

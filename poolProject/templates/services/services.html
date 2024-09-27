@@ -1,0 +1,40 @@
+{% extends "components/base.html" %}
+
+{% block title %}АкваТехПласт | Услуги | Краснодар {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="blogs" id="blogs">
+        <div class="container blogs-container">
+            <h2 class="cycle-objects-title">Услуги</h2>
+            <h1 class="cycle-objects-subtitle">Работы по строительству бассейнов и не только</h1>
+        </div>
+    </section>
+    <section class="services-description">
+        <div class="container services-description-container">
+            {% for service in services %}
+                <a class="container services-description-content" href="{% url 'service_detail' service.pk %}">
+                    <div class="services-description-img cycle-objects-img">
+                        <img src="{{ service.get_image_url }}" alt="{{ service.title }}">
+                    </div>
+                    <div class="services-description-text">
+                        <h4 class="cycle-objects-subtitle">{{ service.subtitle}}</h4>
+                        <h5 class="cycle-objects-title">{{ service.title}}</h5>
+                        <p class="cycle-objects-subtitle">{{ service.description|truncatewords:15 }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+{% endblock %}

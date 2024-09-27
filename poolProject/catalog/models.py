@@ -4,6 +4,7 @@ from django.db import models
 from datetime import date
 
 
+
 class ServicesModel(models.Model):
     title = models.CharField( max_length=100,
                              help_text='Название',
@@ -15,17 +16,15 @@ class ServicesModel(models.Model):
                              verbose_name='Краткое описание услуги, не больше 300 символов',
                              )
     
-    price_min = models.FloatField(verbose_name='Цена от',
-                                  default=0.00,
-                                  help_text='Стоимость от. Не обязательно к заполнению',
-                                  blank=True,
-                                  null=True)
+    includes = models.CharField( max_length=100,
+                             help_text='Не больше 100 символов',
+                             verbose_name='включает в себя')
     
-    price_max = models.FloatField(verbose_name='Цена до',
-                                  default=0.00,
-                                  help_text='Стоимость до. Не обязательно к заполнению',
-                                  blank=True,
-                                  null=True)
+    adouts = models.CharField( max_length=100,
+                             help_text='Не больше 100 символов',
+                             verbose_name='Об услуге')
+    
+    methodology = models.JSONField()
     
     description = models.TextField(verbose_name='Описание',
                                    help_text='Подробное описание услуги')
@@ -43,13 +42,6 @@ class ServicesModel(models.Model):
             return self.image.url
         return None
     
-    def save(self, *args, **kwargs):
-
-        self.price_min = round(self.price_min, 2)
-        self.price_max = round(self.price_max, 2)
-
-        super().save(*args, **kwargs)
-
     def delete(self, *args, **kwargs):
         # Удаление файла изображения
         if self.image and os.path.isfile(self.image.path):
@@ -59,6 +51,8 @@ class ServicesModel(models.Model):
     class Meta:
         verbose_name = 'Услуги компании'
         verbose_name_plural = 'Услуги предоставляемые компанией'
+
+
 
 class ShopCategoryModel(models.Model):
     category = models.CharField(max_length=200, 

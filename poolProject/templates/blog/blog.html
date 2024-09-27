@@ -15,32 +15,163 @@
             <h1 class="cycle-objects-subtitle">Полезная информация и новости из мира бассейнов</h1>
         </div>
     </section>
-    <section class="blogs-filter"> 
-        <div class="container blogs-filter-container">
-            <form id="filter-form">
-                {{ filter_form.as_p }}
-                
-            </form>
+    <aside class="filter-record">
+        <div class="container filter-record-container">
+             
+            <div class="filter-record-card cycle-objects-card">
+                <form id="author-filter-form" class="filter-record-form">
+                    <label class="filter-record-form-label" for="author-select">Фильтр по автору:</label>
+                    <select class="filter-record-form-option" id="author-select" name="author">
+                        <option value="">Все авторы</option>
+                        {% for author in form.author.field.queryset %}
+                            <option value="{{ author.id }}">{{ author.name }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+            <div class="filter-record-card cycle-objects-card">
+                <form id="theme-filter-form" class="filter-record-form">
+                    <label class="filter-record-form-label" for="theme-select">Фильтрация по теме:</label>
+                    <select class="filter-record-form-option" name="theme" id="theme-select">
+                        <option value="">Все темы</option>
+                        {% for theme in theme_form.theme.field.queryset %}
+                            <option value="{{ theme.id }}">{{ theme.theme }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+            <div class="filter-record-card cycle-objects-card">
+                <button id="sort-new-to-old"  class="filter-record-buttons">Сортировка по дате <span id="sort-sign">↑</span></button>
+            </div>  
+            <div class="filter-record-card cycle-objects-card">
+                <button id="reset-filters" class="filter-record-buttons">Сбросить фильтры</button>  <!-- Кнопка сброса -->
+            </div>  
+                              
         </div>
-    </section>
+    </aside>
     <section>
         <div class="container blogs-content" id="articles-container">
             {% include 'blog/_blog_list_partial.html' with page_obj=page_obj %}
         </div>
     </section>
-
     <div class="blogs-btn">
         <button id="load-more" class="btn featurs-body-card-link hovered-btn">Показать еще</button>
-        <div id="loading" style="display: none;">Загрузка...</div>
+        <div id="loading" style="display: none;"></div>
         <div id="end-of-content" style="display: none;">Нет больше записей.</div>
     </div>
-
-    
-
-    
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static 'script/loadPage.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    let page = 1;  // Текущая страница
+    let lastPage = false;  // Флаг для проверки наличия следующей страницы
+    let sort = 'desc';  // Текущий порядок сортировки
+    let author = '';  // Текущий выбранный автор
+    let theme = '';  // Текущая выбранная тема
     
+    // Обработчик для кнопки сортировки
+    $('#sort-new-to-old').on('click', function() {
+        // Меняем сортировку
+        sort = sort === 'desc' ? 'asc' : 'desc';
+        
+        // Меняем знак на кнопке
+        $('#sort-sign').text(sort === 'desc' ? '↑' : '↓');
+        
+        // Сбрасываем страницу и флаг последней страницы
+        page = 1;
+        lastPage = false;
+        
+        // Очищаем контейнер и загружаем новые данные
+        $('#articles-container').empty();
+        loadBlogs(page, sort, author, theme, true);
+    });
+
+    // Обработчик для фильтра по автору
+    $('#author-select').on('change', function() {
+        author = $(this).val();  // Получаем выбранного автора
+        page = 1;  // Сбрасываем текущую страницу
+        lastPage = false;  // Сбрасываем флаг последней страницы
+        $('#articles-container').empty();  // Очищаем контейнер с записями
+        loadBlogs(page, sort, author, theme, true);  // Загружаем данные с фильтром
+    });
+
+    // Обработчик для фильтра по теме
+    $('#theme-select').on('change', function() {
+        theme = $(this).val();  // Получаем выбранную тему
+        page = 1;  // Сбрасываем текущую страницу
+        lastPage = false;  // Сбрасываем флаг последней страницы
+        $('#articles-container').empty();  // Очищаем контейнер с записями
+        loadBlogs(page, sort, author, theme, true);  // Загружаем данные с фильтром
+    });
+
+    $('#reset-filters').on('click', function() {
+        // Сбрасываем выбранные фильтры
+        $('#author-select').val('');
+        $('#theme-select').val('');
+        author = '';
+        theme = '';
+        page = 1;  
+        lastPage = false;  
+        $('#articles-container').empty();  
+        loadBlogs(page, sort, author, theme, true);  
+    });
+
+    $('#load-more').on('click', function() {
+        if (!lastPage) {
+            page++;
+            loadBlogs(page, sort, author, theme, false);
+        }
+    });
+
+    function loadBlogs(page, sort, author, theme, reset = false) {
+        $('#loading').show();
+
+        $.ajax({
+            url: "{% url 'blogs' %}",
+            data: {
+                'page': page,
+                'sort': sort,
+                'author': author,
+                'theme': theme,
+            },
+            success: function(data) {
+                $('#loading').hide();
+
+                // Если это сброс, очищаем контейнер
+                if (reset) {
+                    $('#articles-container').empty();
+                }
+
+                let tempDiv = $('<div>').html(data.blogs);
+
+                // Для каждой записи проверяем, была ли она загружена ранее
+                tempDiv.find('.blogs-content-card').each(function() {
+                    if (!$(this).hasClass('loaded')) {
+                        $(this).addClass('loaded');
+                        $('#articles-container').append($(this));
+                    }
+                });
+
+                // Если нет следующей страницы, скрываем кнопку
+                if (!data.has_next) {
+                    $('#load-more').hide();
+                    $('#end-of-content').show();
+                    lastPage = true;
+                } else {
+                    $('#load-more').show();
+                    $('#end-of-content').hide();
+                }
+            },
+            error: function() {
+                $('#loading').hide();
+                alert('Произошла ошибка при загрузке данных.');
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

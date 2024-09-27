@@ -18,56 +18,7 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        let page = 1;  // Текущая страница
-        let lastPage = false;  // Флаг для проверки наличия следующей страницы
-    
-        $('#load-more').on('click', function() {
-            if (!lastPage) {
-                page++;
-                $('#loading').show();
-    
-                $.ajax({
-                    url: "{% url 'blog_list' %}",
-                    data: {
-                        'page': page
-                    },
-                    success: function(data) {
-                        $('#loading').hide();
-    
-                        // Временно добавляем полученные данные в скрытый контейнер для проверки
-                        let tempDiv = $('<div>').html(data.blogs);
-    
-                        // Для каждой записи проверяем, была ли она загружена ранее
-                        tempDiv.find('.blogs-content-card').each(function() {
-                            if (!$(this).hasClass('loaded')) {
-                                // Добавляем класс loaded к новой записи
-                                $(this).addClass('loaded');
-                                // Добавляем новые записи в конец контейнера
-                                $('#articles-container').append($(this));
-                            }
-                        });
-    
-                        // Если нет следующей страницы, скрываем кнопку
-                        if (!data.has_next) {
-                            $('#load-more').hide();
-                            $('#end-of-content').show();
-                            lastPage = true;  // Устанавливаем флаг, что больше страниц нет
-                        }
-                    },
-                    error: function() {
-                        $('#loading').hide();
-                        alert('Произошла ошибка при загрузке данных.');
-                    }
-                });
-            }
-        });
-    });
-    
-</script>
         
         
 

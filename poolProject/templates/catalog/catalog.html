@@ -15,7 +15,38 @@
             <h1 class="cycle-objects-subtitle">Каталог бассейнов и оборудования</h1>
         </div>
     </section>
-
+    <section class="shop" id="shop">
+        <div class="container shop-container">
+            <h2 class="shop-top-subtitle">Наша продукция</h2>
+            <h3 class="shop-top-title">Пожалуй лучшие бассейны России</h3>
+            {% for category_data in categories_with_products %}
+            <div class="row shop-content">
+                <div class="col-xl-6 col-lg-12 shop-img">
+                    <img src="{{ category_data.category.get_image_url }}" alt="{{ category_data.category.category }}">
+                </div>
+                <div class="col-xl-6 col-lg-12 shop-list">
+                    <div class="block"></div>
+                    <h3 class="shop-title">{{ category_data.category.category }}</h3>
+                    <div class="shop-list-block">
+                        {% for product in category_data.products %}
+                            <div class="shop-list-block-item">
+                                <div class="shop-list-block-item-title">
+                                    <h3>{{ product.title }}</h3>
+                                    <p><span>Цена от: </span>{{ product.price_to }} руб.</p>
+                                </div>
+                               <p>{{ product.description|truncatewords:9 }}</p>
+                            </div>
+                        {% endfor %}
+                        {% if category_data.category %}
+                            <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'category_detail' category_data.category.slug %}">Узнать больше...</a>  
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
 
 {% block scripts %}

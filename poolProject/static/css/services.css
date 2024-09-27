@@ -1,0 +1,442 @@
+.cycle-objects-card {
+  opacity: 0;
+  -webkit-transform: translateX(-40px);
+      -ms-transform: translateX(-40px);
+          transform: translateX(-40px);
+  -webkit-transform: translateZ(-40px);
+          transform: translateZ(-40px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-subtitle {
+  opacity: 0;
+  -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+          transform: translateY(-20px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-title {
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+      -ms-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-img {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.fade-element {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.services-description {
+  width: 100%;
+  padding-top: 76px;
+  padding-bottom: 76px;
+}
+.services-description-content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 100%;
+  min-height: 499px;
+  background: rgb(30, 44, 48);
+  padding: 74px 72px 74px 72px;
+  margin-bottom: 140px;
+  margin-top: 76px;
+}
+.services-description-img {
+  position: absolute;
+  top: 50%;
+  left: 74px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 480px;
+  height: 610px;
+}
+.services-description-img > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.services-description-text {
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: self-start;
+      -ms-flex-align: self-start;
+          align-items: self-start;
+}
+.services-description-text > h4 {
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgb(92, 134, 146);
+  text-transform: uppercase;
+  padding-bottom: 38px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: rgb(255, 255, 255);
+}
+.services-description-text > h5 {
+  font-size: 45px;
+  line-height: 58.5px;
+  letter-spacing: -1.5%;
+  text-align: center;
+  max-width: 659px;
+  padding-bottom: 36px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  text-align: center;
+  max-width: 460px;
+  text-align: left;
+  color: rgb(255, 255, 255);
+}
+.services-description-text > p {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 31.5px;
+  text-align: left;
+}
+
+.reverse-content {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.reverse-img {
+  right: 74px;
+  left: auto;
+}
+
+.service-detail {
+  position: relative;
+}
+.service-detail-body {
+  padding: 0;
+  margin: 0;
+}
+.service-detail-left {
+  min-height: 860px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "Manrope";
+}
+.service-detail-left > h3 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: rgb(122, 156, 165);
+}
+.service-detail-left > h4 {
+  max-width: 435px;
+  font-family: "Play fair";
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 58.5px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+.service-detail-left p {
+  max-width: 530px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 31.5px;
+  text-align: left;
+  color: rgb(85, 85, 85);
+}
+.service-detail-steps {
+  padding-top: 76px;
+  max-width: 510px;
+}
+.service-detail-steps > h5 {
+  max-width: 435px;
+  font-family: "Play fair";
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28.6px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+.service-detail-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 860px;
+  padding: 0;
+}
+.service-detail-right > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.service-detail-card {
+  padding-top: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.service-detail-card > .text {
+  padding-left: 23px;
+  font-family: "Manrope";
+}
+.service-detail-card > .text > p {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 38px;
+  text-align: left;
+  color: rgb(20, 20, 20);
+  max-width: 211px;
+  margin: 0;
+}
+.service-detail-card > .text > p > span {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 31.5px;
+  color: rgb(20, 20, 20);
+}
+
+.service-form {
+  background: rgb(235, 243, 245);
+  padding-top: 76px;
+  padding-bottom: 76px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.service-form > h5 {
+  max-width: 235px;
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgb(122, 156, 165);
+}
+.service-form > h6 {
+  max-width: 453px;
+  font-family: "Play fair";
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 58.5px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: rgb(20, 20, 20);
+}
+.service-form > p {
+  max-width: 622px;
+  font-family: "Manrope";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 31.5px;
+  text-align: center;
+  color: rgb(85, 85, 85);
+}
+.service-form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.service-form-form {
+  width: 70%;
+  background: rgb(255, 255, 255);
+  padding-bottom: 76px;
+}
+.service-form-block {
+  width: 50%;
+  height: 100%;
+  padding: 23px 32px;
+}
+.service-form-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.service-form-body-tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  margin-top: 36px;
+  padding-top: 20px;
+}
+.service-form-body-tag > input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgb(92, 134, 146);
+  padding-left: 12px;
+}
+.service-form-body-tag > label {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28.8px;
+  text-align: left;
+  color: rgb(85, 85, 85);
+  position: absolute;
+  top: 65%;
+  left: 10px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.service-form-body-tag > textarea {
+  padding-left: 12px;
+  padding-top: 6px;
+  height: 80px;
+  border: 1px solid rgb(92, 134, 146);
+}
+.service-form-body-tag > input[type=submit] {
+  background: rgb(92, 134, 146);
+  font-family: "Manrope";
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 17.5px;
+  letter-spacing: 0.12em;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.service-form-body-tag > input[type=submit]:hover {
+  -webkit-filter: invert(35%);
+          filter: invert(35%);
+  -webkit-transform: scale(1.02);
+      -ms-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+@media (max-width: 1200px) {
+  .services-description-img {
+    width: 350px;
+    height: 470px;
+  }
+  .service-detail-left {
+    padding-top: 76px;
+    min-height: 560px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .service-detail-left > h4 {
+    max-width: 100%;
+    padding-bottom: 36px;
+  }
+  .service-detail-left p {
+    padding-bottom: 36px;
+    max-width: 90%;
+  }
+  .service-detail-card {
+    width: 100%;
+  }
+  .service-detail-steps {
+    padding-top: 76px;
+    width: 100%;
+  }
+  .service-detail-steps > h5 {
+    max-width: 435px;
+  }
+  .service-detail-right {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    padding: 0;
+  }
+  .service-detail-right > img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .service-detail-card > .text {
+    width: 90%;
+  }
+  .service-detail-card > .text > p {
+    max-width: 70%;
+  }
+}
+@media (max-width: 768px) {
+  .services-description-img {
+    display: none;
+  }
+  .services-description-text {
+    width: 100%;
+  }
+}

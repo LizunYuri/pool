@@ -126,15 +126,8 @@
      object-fit: cover;
 }
 
-.blogs-filter {
-  width: 100%;
-  padding-top: 76px;
-  padding-bottom: 76px;
-}
-
 .blogs-btn {
   padding-bottom: 76px;
-  padding-top: 76px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

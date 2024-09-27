@@ -1539,6 +1539,106 @@ main {
   color: rgb(85, 85, 85);
 }
 
+.filter-record {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border-bottom: 4px solid rgb(30, 44, 48);
+}
+.filter-record-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.filter-record-card {
+  margin-bottom: 23px;
+  padding-right: 12px;
+  padding-left: 12px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.filter-record-buttons {
+  position: relative;
+  font-family: "Manrope";
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 17.5px;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 18px 43px 19px 43px;
+  border: 2px solid rgb(92, 134, 146);
+  overflow: hidden;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.filter-record-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.filter-record-form-option {
+  position: relative;
+  font-family: "Manrope";
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 17.5px;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 18px 33px 19px 33px;
+  border: 2px solid rgb(92, 134, 146);
+  overflow: hidden;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.filter-record-form-label {
+  position: relative;
+  font-family: "Manrope";
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 17.5px;
+  letter-spacing: 0.12em;
+  text-align: right;
+  padding-bottom: 8px;
+}
+
+.filter-record-buttons::before {
+  content: "";
+  width: 30%;
+  height: 300%;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(122, 156, 165, 0.1)), color-stop(25%, rgba(122, 156, 165, 0.2)), color-stop(50%, rgba(92, 134, 146, 0.3)), color-stop(75%, rgba(122, 156, 165, 0.2)), to(rgba(122, 156, 165, 0.1)));
+  background: linear-gradient(90deg, rgba(122, 156, 165, 0.1) 0%, rgba(122, 156, 165, 0.2) 25%, rgba(92, 134, 146, 0.3) 50%, rgba(122, 156, 165, 0.2) 75%, rgba(122, 156, 165, 0.1) 100%);
+  position: absolute;
+  top: -100%;
+  left: -70%;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+
+.filter-record-buttons:hover {
+  -webkit-transform: scale(1.03);
+      -ms-transform: scale(1.03);
+          transform: scale(1.03);
+}
+
+.filter-record-buttons:hover::before {
+  left: 130%;
+}
+
 @media (max-width: 1440px) {
   .welcome-left {
     padding-top: 160px;
