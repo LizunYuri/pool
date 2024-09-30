@@ -1,0 +1,25 @@
+<div class="container catalog-items-container">
+    {% for catalog in page_obj %}
+        <a href="{% url 'product_detail' slug=catalog.slug %}" class="catalog-items-card">
+                <div class="catalog-items-card-img">
+                    <img src="{{ catalog.get_image_url }}" alt="{{ catalog.title }}">
+                </div>
+                <div class="catalog-items-card-text">
+                    <h5>{{ catalog.title }}</h5>
+                    {% if catalog.price_to %}
+                        <h6> Цена от: {{ catalog.price_to }} руб.</h6>
+                    {% endif %}
+                    {% if catalog.length or catalog.width or catalog.depth %}
+                    <div class="size">
+                        <p>Размер: </p>
+                        <p>Длина: {{ catalog.length  }}</p>
+                        <p>Ширина: {{ catalog.width }}</p>
+                        <p>Глубина: {{ catalog.depth }}</p>
+                    </div>
+                    {% endif %}
+                    <p>{{ catalog.description|truncatewords:9 }}</p>
+                </div>
+            </a>
+        {% endfor %}
+</div>
+
