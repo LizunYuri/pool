@@ -1,0 +1,344 @@
+.cycle-objects-card {
+  opacity: 0;
+  -webkit-transform: translateX(-40px);
+      -ms-transform: translateX(-40px);
+          transform: translateX(-40px);
+  -webkit-transform: translateZ(-40px);
+          transform: translateZ(-40px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-subtitle {
+  opacity: 0;
+  -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+          transform: translateY(-20px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-title {
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+      -ms-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-img {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.fade-element {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.catalog {
+  padding-top: 76px;
+  padding-bottom: 76px;
+}
+.catalog-content {
+  padding-top: 38px;
+  padding-bottom: 38px;
+}
+.catalog-img {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  opacity: 0;
+  -webkit-transform: translateX(-30px);
+      -ms-transform: translateX(-30px);
+          transform: translateX(-30px);
+  position: relative;
+  -webkit-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+.catalog-img-bg {
+  width: 80%;
+  height: 630px;
+  max-width: 595px;
+  max-height: 630px;
+  background: rgb(19, 66, 54);
+  position: relative;
+}
+.catalog-img-bg > .image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 23px;
+  right: 23px;
+  -webkit-box-shadow: 0px 15px 50px 0px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 15px 50px 0px rgba(0, 0, 0, 0.15);
+}
+.catalog-img-bg > .image > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.catalog-price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transform: translateX(30px);
+      -ms-transform: translateX(30px);
+          transform: translateX(30px);
+  position: relative;
+  -webkit-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+.catalog-price > .type {
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-transform: uppercase;
+  color: rgb(92, 134, 146);
+}
+.catalog-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-top: 38px;
+}
+.catalog-list-icon {
+  width: 65px;
+  height: 65px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 2px solid rgb(122, 156, 165);
+}
+.catalog-list-icon > img {
+  width: 45px;
+  height: 45px;
+}
+.catalog-list-body {
+  width: 335px;
+  padding-left: 38px;
+  -moz-text-align-last: left;
+       text-align-last: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.catalog-list-body > h4 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: left;
+  color: rgb(20, 20, 20);
+}
+.catalog-list-body > p {
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  color: rgb(20, 20, 20);
+}
+
+.catalog-items {
+  padding-top: 76px;
+  padding-bottom: 76px;
+}
+.catalog-items-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.catalog-items-card {
+  cursor: pointer;
+  width: 370px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  margin-bottom: 38px;
+}
+.catalog-items-card-img {
+  width: 100%;
+  height: 325px;
+}
+.catalog-items-card-img > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.catalog-items-card-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 400px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 30px 27px 30px 26px;
+  background: rgb(237, 245, 247);
+}
+.catalog-items-card-text > h5 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: rgb(20, 20, 20);
+}
+.catalog-items-card-text > h6 {
+  font-family: "Manrope";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24.72px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: rgb(85, 85, 85);
+}
+.catalog-items-card-text > p {
+  padding-top: 36px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27.9px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: rgb(85, 85, 85);
+}
+
+.size {
+  padding: 4px 13px 4px 13px;
+  background: rgb(122, 156, 165);
+}
+.size > p {
+  font-family: "Manrope";
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16.25px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+}
+
+.product {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.product-size {
+  width: 100%;
+  padding: 4px 13px 4px 13px;
+  background: rgb(122, 156, 165);
+}
+.product-size > p {
+  font-family: "Manrope";
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16.25px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+}
+.product-price {
+  padding-top: 26px;
+  font-size: 26px;
+  line-height: 33.8px;
+  letter-spacing: -1.5%;
+}
+.product-desc {
+  margin-top: 36px;
+}
+.product-desc > p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 31.5px;
+  text-align: left;
+  color: rgb(20, 20, 20);
+}
+
+.catalog-animation-price {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 1200px) {
+  .catalog-price {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-top: 76px;
+    padding-bottom: 38px;
+    border-bottom: 3px solid rgb(30, 44, 48);
+  }
+  .catalog-list {
+    width: 100%;
+  }
+  .catalog-img-bg {
+    height: 435px;
+  }
+}

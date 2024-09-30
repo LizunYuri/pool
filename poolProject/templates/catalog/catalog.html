@@ -1,11 +1,12 @@
 {% extends "components/base.html" %}
 
-{% block title %}АкваТехПласт | Истории | Краснодар {% endblock %}
+{% block title %}АкваТехПласт | Каталог | Краснодар {% endblock %}
 
 {% load static %}
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,35 +16,65 @@
             <h1 class="cycle-objects-subtitle">Каталог бассейнов и оборудования</h1>
         </div>
     </section>
-    <section class="shop" id="shop">
-        <div class="container shop-container">
-            <h2 class="shop-top-subtitle">Наша продукция</h2>
-            <h3 class="shop-top-title">Пожалуй лучшие бассейны России</h3>
+    <aside class="filter-record">
+        <div class="container filter-record-container">
+            <div class="filter-record-card cycle-objects-card">
+                <form id="author-filter-form" class="filter-record-form">
+                    <label class="filter-record-form-label" for="author-select">Фильтрация по товарам (категория)</label>
+                    <select class="filter-record-form-option" id="author-select" name="author">
+                        <option value="">Все товары</option>
+                        {% for author in form.type.field.queryset %}
+                            <option value="{{ author.get_type_display }}">{{ author.get_type_display}}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+            <div class="filter-record-card cycle-objects-card">
+                <form id="theme-filter-form" class="filter-record-form">
+                    <label class="filter-record-form-label" for="theme-select">Фильтрация по категории (типу)</label>
+                    <select class="filter-record-form-option" name="theme" id="theme-select">
+                        <option value="">Все все категории</option>
+                        {% for theme in theme_form.theme.field.queryset %}
+                            <option value="{{ theme.id }}">{{ theme.theme }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>  
+            <div class="filter-record-card cycle-objects-card">
+                <button id="reset-filters" class="filter-record-buttons">Сбросить фильтр</button>
+            </div>               
+        </div>
+    </aside>
+    <section class="catalog" id="catalog">
+        <div class="container catalog-container">
             {% for category_data in categories_with_products %}
-            <div class="row shop-content">
-                <div class="col-xl-6 col-lg-12 shop-img">
-                    <img src="{{ category_data.category.get_image_url }}" alt="{{ category_data.category.category }}">
-                </div>
-                <div class="col-xl-6 col-lg-12 shop-list">
-                    <div class="block"></div>
-                    <h3 class="shop-title">{{ category_data.category.category }}</h3>
-                    <div class="shop-list-block">
-                        {% for product in category_data.products %}
-                            <div class="shop-list-block-item">
-                                <div class="shop-list-block-item-title">
-                                    <h3>{{ product.title }}</h3>
-                                    <p><span>Цена от: </span>{{ product.price_to }} руб.</p>
-                                </div>
-                               <p>{{ product.description|truncatewords:9 }}</p>
+                <div class="row catalog-content">
+                    <div class="col-xl-6 col-lg-12 catalog-img">
+                        <div class="catalog-img-bg">
+                            <div class="image">
+                                <img src="{{ category_data.category.get_image_url }}" alt="{{ category_data.category.category }}">
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 catalog-price">
+                        <p class="type">{{ category_data.category.get_type_display  }}</p>
+                        <h3>{{ category_data.category.category }}</h3>
+                        {% for product in category_data.products %}
+                            <a  class="catalog-list" href="{% url 'product_detail' slug=product.slug %}">
+                                <div class="catalog-list-icon">
+                                    <img src="{% static category_data.category.icon %}" alt="Иконка типа">
+                                </div>
+                                <div class="catalog-list-body">
+                                    <h4>{{ product.title }}</h4>
+                                    <p>{{ product.description|truncatewords:4 }}</p>
+                                </div>
+                            </a>
                         {% endfor %}
                         {% if category_data.category %}
-                            <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'category_detail' category_data.category.slug %}">Узнать больше...</a>  
+                            <a class="featurs-body-card-link hovered-btn" href="{% url 'category_detail' category_data.category.slug %}">Получить больше...</a>  
                         {% endif %}
                     </div>
-                    
                 </div>
-            </div>
             {% endfor %}
         </div>
     </section>

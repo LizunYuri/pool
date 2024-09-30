@@ -2,7 +2,7 @@ import os
 from django.utils import timezone
 from django.db import models
 from datetime import date
-
+from django.utils.translation import gettext_lazy as _
 
 
 class ServicesModel(models.Model):
@@ -53,8 +53,21 @@ class ServicesModel(models.Model):
         verbose_name_plural = 'Услуги предоставляемые компанией'
 
 
-
 class ShopCategoryModel(models.Model):
+
+    class TypeProduct(models.IntegerChoices):
+        POOL = 1, _('Бассейны')
+        EQUIPMENT = 2, _('Оборудование')
+        MATERIAL = 3, _('Материалы')
+
+    ICONS = {
+        TypeProduct.POOL: 'icons/pool.svg',
+        TypeProduct.EQUIPMENT: 'icons/water-pump.svg',
+        TypeProduct.MATERIAL: 'icons/material.svg',
+    }
+
+    type = models.IntegerField(choices=TypeProduct.choices, verbose_name='Тип категории')
+
     category = models.CharField(max_length=200, 
                                 verbose_name='Категория товара',
                                 help_text='Указать категорию товаров')
@@ -85,10 +98,16 @@ class ShopCategoryModel(models.Model):
         verbose_name = 'Категории товаров'
         verbose_name_plural = 'Категория товара'
 
+    @property
+    def icon(self):
+        return self.ICONS.get(self.type)
+
+
 class ShopElementModel(models.Model):
 
     date = models.DateField(default=timezone.now,
                             verbose_name='Дата публикации')
+    
     category = models.ForeignKey(ShopCategoryModel, 
                                  verbose_name='Категория товара',
                                  help_text='Выбрать категорию', 
@@ -96,10 +115,18 @@ class ShopElementModel(models.Model):
     title = models.CharField(max_length=200, 
                              verbose_name='Название продукции',
                              help_text='Не больше 200 сиволов')
-    dimensions = models.CharField(max_length=20,
-                                  verbose_name='Размер бассейна', 
-                                  help_text='Введите в формате ДДxШШxГГ')
-
+    length = models.FloatField(verbose_name='Длина',
+                            help_text='Для чаши бассейна, если другая категория то не заполнять!',
+                            blank=True,
+                            null=True)
+    width = models.FloatField(verbose_name='Ширина',
+                            help_text='Для чаши бассейна, если другая категория то не заполнять!',
+                            blank=True,
+                            null=True)
+    depth = models.FloatField(verbose_name='Глубина',
+                            help_text='Для чаши бассейна, если другая категория то не заполнять!',
+                            blank=True,
+                            null=True)
     description = models.TextField(verbose_name='Подробное описание продукции',
                                    help_text='Описать приемущества и недостатки, максимально подробно')
     price_to = models.FloatField(verbose_name='Цена от',
@@ -110,11 +137,14 @@ class ShopElementModel(models.Model):
     image = models.ImageField(upload_to='catalog/product/',
                               verbose_name='Фото товара',
                               help_text='Красивое фото используется для оформления обложки страницы с описанием услуги')
+    
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     
     def save(self, *args, **kwargs):
 
-        self.price_to = round(self.price_to, 2)
+        self.length = round(self.length, 2)
+        self.width = round(self.width, 2)
+        self.depth = round(self.depth, 2)
 
         super().save(*args, **kwargs)
 

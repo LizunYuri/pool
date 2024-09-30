@@ -52,6 +52,7 @@ def index(request):
                                                'breadcrumbs': breadcrumbs,
                                                })
 
+
 def services(request):
     services = ServicesModel.objects.all()
 
@@ -106,13 +107,6 @@ def about_detail(request, pk):
     return render(request, 'components/about_detail.html', {'about_detail': about_detail})
 
 
-def category_detail(request, slug):
-
-    category = get_object_or_404(ShopCategoryModel, slug=slug)
-    products = ShopElementModel.objects.filter(category=category)
-    
-    return render(request, 'catalog/category_detail.html', {'category': category, 'products': products})
-
 def blogs(request):
     
     authors = PersonalModel.objects.all()
@@ -165,6 +159,7 @@ def blogs(request):
         'breadcrumbs': breadcrumbs,
     })
 
+
 def blog_detail(request, slug):
     blog = get_object_or_404(BlogModel, slug=slug)
     
@@ -179,6 +174,7 @@ def blog_detail(request, slug):
 
 
 def catalog(request):
+    
 
     categories = ShopCategoryModel.objects.all()
 
@@ -200,3 +196,36 @@ def catalog(request):
     return render(request, 'catalog/catalog.html', {'breadcrumbs' : breadcrumbs,
                                                     'categories_with_products' : categories_with_products,})
 
+
+def category_detail(request, slug):
+
+    category = get_object_or_404(ShopCategoryModel, slug=slug)
+    products = ShopElementModel.objects.filter(category=category).order_by('-date')
+
+    paginator = Paginator(products, 6)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+    
+    breadcrumbs = [
+        {"name": "Главная", "url": "/"},
+        {"name": "Каталог", "url" : f"/catalog/"},
+        {"name": category.category, "url": request.path},
+    ]
+    return render(request, 'catalog/category_detail.html', {'category': category,
+                                                             'page_obj' : page_obj,
+                                                             'breadcrumbs' : breadcrumbs})
+
+
+def product_detail(request, slug):
+
+    product = get_object_or_404(ShopElementModel, slug=slug)
+
+    breadcrumbs = [
+        {"name": "Главная", "url": "/"},
+        {"name": "Каталог", "url" : f"/catalog/"},
+         {"name": product.category, "url": f"/catalog/category/{product.category.slug}/"},
+        {"name": product.title, "url": request.path},
+    ]
+
+    return render(request, 'catalog/product_detail.html', {'product' : product,
+                                                           'breadcrumbs' : breadcrumbs})

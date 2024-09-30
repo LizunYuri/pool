@@ -1,0 +1,94 @@
+{% extends "components/base.html" %}
+
+{% block title %}АкваТехПласт | {{ product.title }} | Краснодар {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="blogs" id="blogs">
+        <div class="container blogs-container">
+            <h2 class="cycle-objects-title">{{ product.category }}</h2>
+            <h1 class="cycle-objects-subtitle">{{ product.title }}</h1>
+        </div>
+    </section>
+    <section class="catalog" id="catalog">
+        <div class="container catalog-container">
+            <div class="row catalog-content">
+                <div class="col-xl-6 col-lg-12 catalog-img">
+                    <div class="catalog-img-bg">
+                        <div class="image">
+                            <img src="{{ product.get_image_url }}" alt="{{ product.title }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-12 catalog-price product">
+                    {% if product.length or product.width or product.depth %}
+                        <div class="product-size">
+                            <p>Размер: </p>
+                            <p>Длина: {{ product.length  }}</p>
+                            <p>Ширина: {{ product.width }}</p>
+                            <p>Глубина: {{ product.depth }}</p>
+                        </div>
+                    {% endif %}
+                    {% if product.price_to %}
+                        <h6 class="product-price"> Цена от: {{ product.price_to }} руб.</h6>
+                    {% endif %}
+                    <div class="product-desc">
+                        <p>{{ product.description }}</p>
+                    </div>
+                </div>
+    </section>
+    <section class="service-form">
+        <h5>Подробнее</h5>
+        <h6>Оставьте заявку</h6>
+        <p>Мы Вам перзвоним и подготовим детальный расчет</p>
+        
+    <div class="container service-form-container">
+        <div class="service-form-form">
+            <form class="" action="#">
+                <div class="service-form-body">
+                    <div class="service-form-block">
+                        <div class="service-form-body-tag">
+                            <label for="name">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Имя</span>
+                            </label>
+                            <input type="text" name="name" id="serviceName">
+                        </div>
+                        <div class="service-form-body-tag">
+                            <label for="city">
+                                <i class="fa-solid fa-building"></i>
+                                <span>Город</span>
+                            </label>
+                            <input type="text" name="city" id="serviceSity">
+                        </div>
+                    </div>
+                    <div class="service-form-block">
+                        <div class="service-form-body-tag">
+                            <label for="phone">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>Телефон</span>
+                            </label>
+                            <input type="text" name="phone" id="phone">
+                        </div>
+                        <div class="service-form-body-tag">
+                            <input type="submit" name="send" id="" placeholder="Отправить">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+    
+{% endblock %}
