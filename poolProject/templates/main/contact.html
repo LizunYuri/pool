@@ -1,0 +1,74 @@
+{% extends "components/base.html" %}
+
+{% block title %}АкваТехПласт | Контакты | Краснодар {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="blogs" id="blogs">
+        <div class="container blogs-container">
+            <h2 class="cycle-objects-title">АкваТехПласт</h2>
+            <h1 class="cycle-objects-subtitle">Строим бассейны с 2006 года</h1>
+        </div>
+    </section>
+    <section class="catalog" id="catalog">
+        <div class="container catalog-container">
+                <div class="row catalog-content">
+                    <div class="col-xl-6 col-lg-12 catalog-img">
+                        <div class="catalog-img-bg">
+                            <div class="image">
+                                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aff01fef317a72ce18d711cb837188642f81124cf63e69d45dc32c402d063b12b&amp;width=100%25&amp;height=630&amp;lang=ru_RU&amp;scroll=true"></script>                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 catalog-price contact-content">
+                        <p class="type">Остались вопросы</p>
+                        <h3>АкваТехПласт</h3>
+                        <p class='contact-text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis accusantium fuga fugit molestiae ex reiciendis dicta nam? Voluptatum eius, hic animi maxime labore debitis, totam aut fugiat eligendi nam delectus!</p>
+                        <div class="contact-card">
+                            <div class="contact-card-content">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="home"><path fill="#7a9ca5" d="M21.66,10.25l-9-8a1,1,0,0,0-1.32,0l-9,8a1,1,0,0,0-.27,1.11A1,1,0,0,0,3,12H4v9a1,1,0,0,0,1,1H19a1,1,0,0,0,1-1V12h1a1,1,0,0,0,.93-.64A1,1,0,0,0,21.66,10.25ZM13,20H11V17a1,1,0,0,1,2,0Zm5,0H15V17a3,3,0,0,0-6,0v3H6V12H18ZM5.63,10,12,4.34,18.37,10Z"></path></svg>
+                                </div>
+                                <div class="text">
+                                    <p><span>Адрес:</span></p><p>г. Краснодар, ул. Симферопольская, д.62, оф. 212, 2 этаж</p>
+                                </div>
+                            </div>
+                            <div class="contact-card-content">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="phone"><path fill="#7a9ca5" d="M19.44,13c-.22,0-.45-.07-.67-.12a9.44,9.44,0,0,1-1.31-.39,2,2,0,0,0-2.48,1l-.22.45a12.18,12.18,0,0,1-2.66-2,12.18,12.18,0,0,1-2-2.66L10.52,9a2,2,0,0,0,1-2.48,10.33,10.33,0,0,1-.39-1.31c-.05-.22-.09-.45-.12-.68a3,3,0,0,0-3-2.49h-3a3,3,0,0,0-3,3.41A19,19,0,0,0,18.53,21.91l.38,0a3,3,0,0,0,2-.76,3,3,0,0,0,1-2.25v-3A3,3,0,0,0,19.44,13Zm.5,6a1,1,0,0,1-.34.75,1.05,1.05,0,0,1-.82.25A17,17,0,0,1,4.07,5.22a1.09,1.09,0,0,1,.25-.82,1,1,0,0,1,.75-.34h3a1,1,0,0,1,1,.79q.06.41.15.81a11.12,11.12,0,0,0,.46,1.55l-1.4.65a1,1,0,0,0-.49,1.33,14.49,14.49,0,0,0,7,7,1,1,0,0,0,.76,0,1,1,0,0,0,.57-.52l.62-1.4a13.69,13.69,0,0,0,1.58.46q.4.09.81.15a1,1,0,0,1,.79,1Z"></path></svg>                                </div>
+                                <div class="text">
+                                    <p><span>Телефон:</span></p>
+                                    <a class="header-title-tel" href="tel:89534143001">тел. 8(952)414-30-01</a>
+                                    <br>
+                                    <a class="header-title-tel" href="tel:+79384796301">тел. 8(938) 479-63-01</a>                    
+                                </div>
+                            </div>
+                            <div class="contact-card-content">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="envelope"><path fill="#7a9ca5" d="M19,4H5A3,3,0,0,0,2,7V17a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm-.41,2-5.88,5.88a1,1,0,0,1-1.42,0L5.41,6ZM20,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V7.41l5.88,5.88a3,3,0,0,0,4.24,0L20,7.41Z"></path></svg>                                </div>
+                                <div class="text">
+                                    <p><span>Электронная почта:</span></p>
+                                    <a class="header-title-tel" href="mailto:bassein23@yandex.ru">bassein23@yandex.ru</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+    <section class="service-form">
+        <h5>Подробнее</h5>
+        <h6>Свяжитесь с нами</h6>
+        {% include "components/serviceForm.html" %}
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+{% endblock %}

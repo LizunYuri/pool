@@ -29,18 +29,17 @@
                         <li class="header-effect block"><a href="{% url 'blogs' %}">Блог</a></li>
                         <li class="header-effect block"><a href="{% url 'catalog' %}">Бассейны</a></li>
                         <li class="header-effect block"><a href="{% url 'services' %}">Услуги</a></li>
-                        <li class="header-effect block"><a href="#">Контакты</a></li>
+                        <li class="header-effect block"><a href="{% url 'contact' %}">Контакты</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="footer-body-explorer">
                 <p>Информация:</p>
                     <ul>
-                        <li class="header-effect block"><a href="#">home</a></li>
-                        <li class="header-effect block"><a href="#">blog</a></li>
-                        <li class="header-effect block"><a href="#">shop</a></li>
-                        <li class="header-effect block"><a href="#">services</a></li>
-                        <li class="header-effect block"><a href="#">contact</a></li>
+                        <li class="header-effect block"><a href="{% url 'nofound' %}">404</a></li>
+                        <li class="header-effect block"><a href="{% url 'cookie' %}">Cookie</a></li>
+                        <li class="header-effect block"><a href="{% url 'info' %}">Политика</a></li>
+                        <li class="header-effect block"><a href="{% url 'license' %}">Лицензионное соглашение</a></li>
                     </ul>
             </div>
             <div class="footer-address">

@@ -49,42 +49,7 @@
             <h6>Остались вопросы? Мы Вам перезвоним</h6>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, quidem? Laboriosam ex laudantium sed laborum, qui esse aspernatur quae fugiat deleniti sit fuga consequuntur assumenda veniam, distinctio repellat quod ea.</p>
             
-        <div class="container service-form-container">
-            <div class="service-form-form">
-                <form class="" action="#">
-                    <div class="service-form-body">
-                        <div class="service-form-block">
-                            <div class="service-form-body-tag">
-                                <label for="name">
-                                    <i class="fa-regular fa-user"></i>
-                                    <span>Имя</span>
-                                </label>
-                                <input type="text" name="name" id="serviceName">
-                            </div>
-                            <div class="service-form-body-tag">
-                                <label for="city">
-                                    <i class="fa-solid fa-building"></i>
-                                    <span>Город</span>
-                                </label>
-                                <input type="text" name="city" id="serviceSity">
-                            </div>
-                        </div>
-                        <div class="service-form-block">
-                            <div class="service-form-body-tag">
-                                <label for="phone">
-                                    <i class="fa-solid fa-phone"></i>
-                                    <span>Телефон</span>
-                                </label>
-                                <input type="text" name="phone" id="phone">
-                            </div>
-                            <div class="service-form-body-tag">
-                                <input type="submit" name="send" id="" placeholder="Отправить">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+            {% include "components/serviceForm.html" %}
     </section>
 {% endblock %}
 

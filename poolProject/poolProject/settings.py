@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'django_bootstrap_breadcrumbs',
     'main',
     'content',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'blog',
     'company',
     'django_json_widget',
+    'client',
 
 ]
 
@@ -141,3 +143,14 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Настройки email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'info@dfcatlant.ru'
+# EMAIL_PORT = 110
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'info@dfcatlant.ru'  # Ваш Gmail
+# EMAIL_HOST_PASSWORD = 'mcdwK4DbDhSMcVE'     # Пароль приложения или ваш Gmail пароль
+DEFAULT_FROM_EMAIL = 'bassein23@yandex.ru'

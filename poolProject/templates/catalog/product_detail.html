@@ -48,42 +48,7 @@
         <h5>Подробнее</h5>
         <h6>Оставьте заявку</h6>
         <p>Мы Вам перзвоним и подготовим детальный расчет</p>
-        
-    <div class="container service-form-container">
-        <div class="service-form-form">
-            <form class="" action="#">
-                <div class="service-form-body">
-                    <div class="service-form-block">
-                        <div class="service-form-body-tag">
-                            <label for="name">
-                                <i class="fa-regular fa-user"></i>
-                                <span>Имя</span>
-                            </label>
-                            <input type="text" name="name" id="serviceName">
-                        </div>
-                        <div class="service-form-body-tag">
-                            <label for="city">
-                                <i class="fa-solid fa-building"></i>
-                                <span>Город</span>
-                            </label>
-                            <input type="text" name="city" id="serviceSity">
-                        </div>
-                    </div>
-                    <div class="service-form-block">
-                        <div class="service-form-body-tag">
-                            <label for="phone">
-                                <i class="fa-solid fa-phone"></i>
-                                <span>Телефон</span>
-                            </label>
-                            <input type="text" name="phone" id="phone">
-                        </div>
-                        <div class="service-form-body-tag">
-                            <input type="submit" name="send" id="" placeholder="Отправить">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+        {% include "components/serviceForm.html" %}
     </div>
 </section>
 {% endblock %}

@@ -117,14 +117,17 @@ class ShopElementModel(models.Model):
                              help_text='Не больше 200 сиволов')
     length = models.FloatField(verbose_name='Длина',
                             help_text='Для чаши бассейна, если другая категория то не заполнять!',
+                            default=0.00,
                             blank=True,
                             null=True)
     width = models.FloatField(verbose_name='Ширина',
                             help_text='Для чаши бассейна, если другая категория то не заполнять!',
+                            default=0.00,
                             blank=True,
                             null=True)
     depth = models.FloatField(verbose_name='Глубина',
                             help_text='Для чаши бассейна, если другая категория то не заполнять!',
+                            default=0.00,
                             blank=True,
                             null=True)
     description = models.TextField(verbose_name='Подробное описание продукции',

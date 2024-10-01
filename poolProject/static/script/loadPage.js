@@ -35,7 +35,7 @@ const cycleEffectFade = (content, timeout, effect, percent) => {
 const handleScrollEffect = () => {
     cycleEffectCard(
         cycleObjectsCard,
-        700,
+        300,
         'fade-element',
         100,
         0.1

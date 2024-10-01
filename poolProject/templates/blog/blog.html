@@ -64,112 +64,112 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    let page = 1;  // Текущая страница
-    let lastPage = false;  // Флаг для проверки наличия следующей страницы
-    let sort = 'desc';  // Текущий порядок сортировки
-    let author = '';  // Текущий выбранный автор
-    let theme = '';  // Текущая выбранная тема
-    
-    // Обработчик для кнопки сортировки
-    $('#sort-new-to-old').on('click', function() {
-        // Меняем сортировку
-        sort = sort === 'desc' ? 'asc' : 'desc';
+    $(document).ready(function() {
+        let page = 1;  // Текущая страница
+        let lastPage = false;  // Флаг для проверки наличия следующей страницы
+        let sort = 'desc';  // Текущий порядок сортировки
+        let author = '';  // Текущий выбранный автор
+        let theme = '';  // Текущая выбранная тема
         
-        // Меняем знак на кнопке
-        $('#sort-sign').text(sort === 'desc' ? '↑' : '↓');
-        
-        // Сбрасываем страницу и флаг последней страницы
-        page = 1;
-        lastPage = false;
-        
-        // Очищаем контейнер и загружаем новые данные
-        $('#articles-container').empty();
-        loadBlogs(page, sort, author, theme, true);
-    });
+        // Обработчик для кнопки сортировки
+        $('#sort-new-to-old').on('click', function() {
+            // Меняем сортировку
+            sort = sort === 'desc' ? 'asc' : 'desc';
+            
+            // Меняем знак на кнопке
+            $('#sort-sign').text(sort === 'desc' ? '↑' : '↓');
+            
+            // Сбрасываем страницу и флаг последней страницы
+            page = 1;
+            lastPage = false;
+            
+            // Очищаем контейнер и загружаем новые данные
+            $('#articles-container').empty();
+            loadBlogs(page, sort, author, theme, true);
+        });
 
-    // Обработчик для фильтра по автору
-    $('#author-select').on('change', function() {
-        author = $(this).val();  // Получаем выбранного автора
-        page = 1;  // Сбрасываем текущую страницу
-        lastPage = false;  // Сбрасываем флаг последней страницы
-        $('#articles-container').empty();  // Очищаем контейнер с записями
-        loadBlogs(page, sort, author, theme, true);  // Загружаем данные с фильтром
-    });
+        // Обработчик для фильтра по автору
+        $('#author-select').on('change', function() {
+            author = $(this).val();  // Получаем выбранного автора
+            page = 1;  // Сбрасываем текущую страницу
+            lastPage = false;  // Сбрасываем флаг последней страницы
+            $('#articles-container').empty();  // Очищаем контейнер с записями
+            loadBlogs(page, sort, author, theme, true);  // Загружаем данные с фильтром
+        });
 
-    // Обработчик для фильтра по теме
-    $('#theme-select').on('change', function() {
-        theme = $(this).val();  // Получаем выбранную тему
-        page = 1;  // Сбрасываем текущую страницу
-        lastPage = false;  // Сбрасываем флаг последней страницы
-        $('#articles-container').empty();  // Очищаем контейнер с записями
-        loadBlogs(page, sort, author, theme, true);  // Загружаем данные с фильтром
-    });
+        // Обработчик для фильтра по теме
+        $('#theme-select').on('change', function() {
+            theme = $(this).val();  // Получаем выбранную тему
+            page = 1;  // Сбрасываем текущую страницу
+            lastPage = false;  // Сбрасываем флаг последней страницы
+            $('#articles-container').empty();  // Очищаем контейнер с записями
+            loadBlogs(page, sort, author, theme, true);  // Загружаем данные с фильтром
+        });
 
-    $('#reset-filters').on('click', function() {
-        // Сбрасываем выбранные фильтры
-        $('#author-select').val('');
-        $('#theme-select').val('');
-        author = '';
-        theme = '';
-        page = 1;  
-        lastPage = false;  
-        $('#articles-container').empty();  
-        loadBlogs(page, sort, author, theme, true);  
-    });
+        $('#reset-filters').on('click', function() {
+            // Сбрасываем выбранные фильтры
+            $('#author-select').val('');
+            $('#theme-select').val('');
+            author = '';
+            theme = '';
+            page = 1;  
+            lastPage = false;  
+            $('#articles-container').empty();  
+            loadBlogs(page, sort, author, theme, true);  
+        });
 
-    $('#load-more').on('click', function() {
-        if (!lastPage) {
-            page++;
-            loadBlogs(page, sort, author, theme, false);
-        }
-    });
-
-    function loadBlogs(page, sort, author, theme, reset = false) {
-        $('#loading').show();
-
-        $.ajax({
-            url: "{% url 'blogs' %}",
-            data: {
-                'page': page,
-                'sort': sort,
-                'author': author,
-                'theme': theme,
-            },
-            success: function(data) {
-                $('#loading').hide();
-
-                // Если это сброс, очищаем контейнер
-                if (reset) {
-                    $('#articles-container').empty();
-                }
-
-                let tempDiv = $('<div>').html(data.blogs);
-
-                // Для каждой записи проверяем, была ли она загружена ранее
-                tempDiv.find('.blogs-content-card').each(function() {
-                    if (!$(this).hasClass('loaded')) {
-                        $(this).addClass('loaded');
-                        $('#articles-container').append($(this));
-                    }
-                });
-
-                // Если нет следующей страницы, скрываем кнопку
-                if (!data.has_next) {
-                    $('#load-more').hide();
-                    $('#end-of-content').show();
-                    lastPage = true;
-                } else {
-                    $('#load-more').show();
-                    $('#end-of-content').hide();
-                }
-            },
-            error: function() {
-                $('#loading').hide();
-                alert('Произошла ошибка при загрузке данных.');
+        $('#load-more').on('click', function() {
+            if (!lastPage) {
+                page++;
+                loadBlogs(page, sort, author, theme, false);
             }
         });
-    }
-});
+
+        function loadBlogs(page, sort, author, theme, reset = false) {
+            $('#loading').show();
+
+            $.ajax({
+                url: "{% url 'blogs' %}",
+                data: {
+                    'page': page,
+                    'sort': sort,
+                    'author': author,
+                    'theme': theme,
+                },
+                success: function(data) {
+                    $('#loading').hide();
+
+                    // Если это сброс, очищаем контейнер
+                    if (reset) {
+                        $('#articles-container').empty();
+                    }
+
+                    let tempDiv = $('<div>').html(data.blogs);
+
+                    // Для каждой записи проверяем, была ли она загружена ранее
+                    tempDiv.find('.blogs-content-card').each(function() {
+                        if (!$(this).hasClass('loaded')) {
+                            $(this).addClass('loaded');
+                            $('#articles-container').append($(this));
+                        }
+                    });
+
+                    // Если нет следующей страницы, скрываем кнопку
+                    if (!data.has_next) {
+                        $('#load-more').hide();
+                        $('#end-of-content').show();
+                        lastPage = true;
+                    } else {
+                        $('#load-more').show();
+                        $('#end-of-content').hide();
+                    }
+                },
+                error: function() {
+                    $('#loading').hide();
+                    alert('Произошла ошибка при загрузке данных.');
+                }
+            });
+        }
+    });
 </script>
 {% endblock %}

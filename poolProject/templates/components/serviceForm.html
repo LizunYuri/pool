@@ -1,0 +1,119 @@
+{% load static %}
+
+<div class="container service-form-container">
+    <div class="service-form-form">
+        <form id="form2" method="post" action="{% url 'save_form_data' %}">
+            {% csrf_token %}
+            <div class="service-form-body">
+                <div class="service-form-block">
+                    <div class="service-form-body-tag">
+                        <label for="name">
+                            <i class="fa-regular fa-user"></i>
+                            <span>Имя</span>
+                        </label>
+                        <input type="text" name="name" id="serviceName">
+                    </div>
+                    <div class="service-form-body-tag">
+                        <label for="city">
+                            <i class="fa-solid fa-building"></i>
+                            <span>Город</span>
+                        </label>
+                        <input type="text" name="city" id="serviceSity">
+                    </div>
+                </div>
+                <div class="service-form-block">
+                    <div class="service-form-body-tag">
+                        <label for="phone">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>Телефон</span>
+                        </label>
+                        <input type="text" name="phone" id="phone">
+                    </div>
+                    <div class="service-form-body-tag">
+                        <input type="submit" name="send" id="" placeholder="Отправить">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+// Получаем CSRF-токен из куки
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+// AJAX-запрос
+    $('#form2').on('submit', function(e) {
+        e.preventDefault();  // Отключаем стандартное поведение формы
+
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'save_form_data' %}",
+            data: $(this).serialize(),
+            headers: {
+                'X-CSRFToken': csrftoken  // Передаем CSRF-токен в заголовках
+            },
+            success: function(response) {
+                // Показываем сообщение об успешной отправке
+                $('#form2').hide();  // Скрываем форму
+                $('<p class="discount-content-body-title">Спасибо! </br> Ваши данные успешно отправлены.</p>').insertAfter('#form2');
+            },
+            error: function(error) {
+                alert('Произошла ошибка!');
+            }
+        });
+    });
+
+    </script>
+    <script>
+        document.querySelectorAll('.service-form-body-tag input').forEach((input) => {
+            const label = input.previousElementSibling;
+        
+            // Функция для сдвига и уменьшения label
+            const moveLabel = () => {
+                label.style.position = 'absolute';
+                label.style.top = '0';
+                label.style.left = '10px';
+                label.style.fontSize = '12px';
+                label.style.transition = 'all 0.3s ease';
+            };
+        
+            // Функция для возвращения label
+            const resetLabel = () => {
+                if (!input.value) {  // Если поле пустое
+                    label.style.position = 'absolute';
+                    label.style.top = '65%';
+                    label.style.left = '10px';
+                    label.style.fontSize = '18px';
+                    label.style.transform = 'translateY(-50%)';
+                }
+            };
+        
+            // Обработка событий
+            input.addEventListener('focus', moveLabel);
+            input.addEventListener('blur', resetLabel);
+        
+            // Проверка на заполненность при загрузке страницы
+            if (input.value) {
+                moveLabel();  // Если поле уже заполнено, смещаем label
+            }
+        });
+    </script>
+{% endblock %}

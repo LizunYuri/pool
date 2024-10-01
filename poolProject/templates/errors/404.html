@@ -1,0 +1,66 @@
+{% extends "components/base.html" %}
+
+{% block title %}АкваТехПласт | Контакты | Краснодар {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+    <style>
+        .error-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        } 
+        .error-container > h3{
+            font-size: 150px;
+            color: rgba(122, 156, 165, 1);
+            text-shadow: 4px 5px 6px 0px rgba(146, 146, 146, 0.5);
+            padding-top: 76px;
+            padding-bottom: 76px;
+        }
+        .error-container > h4{
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 52px;
+            letter-spacing: -0.02em;
+            text-align: center;
+            padding-bottom: 76px;
+        }
+        .error-container > a{
+            padding: 23px 64px 24px 63px;
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 17.5px;
+            letter-spacing: 0.12em;
+            text-align: center;
+            color: white;
+            background: rgba(122, 156, 165, 1);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="blogs" id="blogs">
+        <div class="container blogs-container">
+            <h2 class="cycle-objects-title">404</h2>
+            <h1 class="cycle-objects-subtitle">Страница не найдена</h1>
+        </div>
+    </section>
+    <section class="catalog" id="catalog">
+        <div class="container error-container">
+            <h3>404</h3>
+            <h4>Страница не найдена</h4>
+            <a href="https://poolkuban.ru">На главную</a>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+{% endblock %}

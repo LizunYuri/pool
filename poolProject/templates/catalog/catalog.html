@@ -18,35 +18,31 @@
     </section>
     <aside class="filter-record">
         <div class="container filter-record-container">
-            <div class="filter-record-card cycle-objects-card">
-                <form id="author-filter-form" class="filter-record-form">
-                    <label class="filter-record-form-label" for="author-select">Фильтрация по товарам (категория)</label>
-                    <select class="filter-record-form-option" id="author-select" name="author">
-                        <option value="">Все товары</option>
-                        {% for author in form.type.field.queryset %}
-                            <option value="{{ author.get_type_display }}">{{ author.get_type_display}}</option>
-                        {% endfor %}
-                    </select>
-                </form>
+            <div class="sort-block cycle-objects-card">
+                <label for="sort-price" class="sort-select">Фильтрация по категории:</label>
+                <select id="type-select" class="filter-record-form-option">
+                    <option value="">Все категории</option>
+                    {% for type in unique_types %}
+                        <option value="{{ type.type }}">{{ type.display }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            <div class="filter-record-card cycle-objects-card">
-                <form id="theme-filter-form" class="filter-record-form">
-                    <label class="filter-record-form-label" for="theme-select">Фильтрация по категории (типу)</label>
-                    <select class="filter-record-form-option" name="theme" id="theme-select">
-                        <option value="">Все все категории</option>
-                        {% for theme in theme_form.theme.field.queryset %}
-                            <option value="{{ theme.id }}">{{ theme.theme }}</option>
-                        {% endfor %}
-                    </select>
-                </form>
-            </div>  
-            <div class="filter-record-card cycle-objects-card">
+            <div class="sort-block cycle-objects-card">
+                <label for="category-select" class="sort-select">Фильтрация по товарам:</label>
+                <select id="category-select" class="filter-record-form-option">
+                    <option value="">Все товары</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.category }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="sort-block cycle-objects-card">
                 <button id="reset-filters" class="filter-record-buttons">Сбросить фильтр</button>
-            </div>               
+            </div>              
         </div>
     </aside>
     <section class="catalog" id="catalog">
-        <div class="container catalog-container">
+        <div class="container catalog-container" id="catalog-content">
             {% for category_data in categories_with_products %}
                 <div class="row catalog-content">
                     <div class="col-xl-6 col-lg-12 catalog-img">
@@ -57,10 +53,10 @@
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-12 catalog-price">
-                        <p class="type">{{ category_data.category.get_type_display  }}</p>
-                        <h3>{{ category_data.category.category }}</h3>
+                        <p class="type">{{ category_data.category.get_type_display }}</p>
+                        <a href="{% url 'category_detail' category_data.category.slug %}"><h3>{{ category_data.category.category }}</h3></a>
                         {% for product in category_data.products %}
-                            <a  class="catalog-list" href="{% url 'product_detail' slug=product.slug %}">
+                            <a class="catalog-list" href="{% url 'product_detail' slug=product.slug %}">
                                 <div class="catalog-list-icon">
                                     <img src="{% static category_data.category.icon %}" alt="Иконка типа">
                                 </div>
@@ -82,5 +78,36 @@
 
 {% block scripts %}
     <script src="{% static 'script/loadPage.js' %}"></script>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const typeSelect = document.getElementById('type-select');
+            const categorySelect = document.getElementById('category-select');
+            const searchInput = document.getElementById('search-input');
+            const catalogContent = document.getElementById('catalog-content');
+            const resetFilters = document.getElementById('reset-filters');
+        
+            function filterCatalog() {
+                const selectedType = typeSelect.value;
+                const selectedCategory = categorySelect.value;
+                const searchQuery = searchInput.value;
+        
+                fetch(`/catalog/filter/?type=${selectedType}&category=${selectedCategory}&search=${encodeURIComponent(searchQuery)}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        catalogContent.innerHTML = data;
+                    });
+            }
+        
+            typeSelect.addEventListener('change', filterCatalog);
+            categorySelect.addEventListener('change', filterCatalog);
+            searchInput.addEventListener('input', filterCatalog); // Отправка запроса при вводе в строку поиска
+        
+            resetFilters.addEventListener('click', () => {
+                typeSelect.value = '';
+                categorySelect.value = '';
+                searchInput.value = '';
+                filterCatalog();
+            });
+        });
+    </script>
 {% endblock %}

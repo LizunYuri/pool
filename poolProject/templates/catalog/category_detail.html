@@ -61,6 +61,67 @@
                 </div>
             {% endfor %}
         </div>
+
+
+
+
+        {% extends "components/base.html" %}
+
+{% block title %}АкваТехПласт | {{ category.category }} | Краснодар {% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="blogs" id="blogs">
+        <div class="container blogs-container">
+            <h2 class="cycle-objects-title">{{ category.get_type_display  }}</h2>
+            <h1 class="cycle-objects-subtitle">{{ category.category }}</h1>
+        </div>
+    </section>
+    <aside class="filter-record">
+        <div class="container filter-record-container">
+            <div class="sort-block cycle-objects-card">
+                <label for="sort-price" class="sort-select">Сортировать по цене:</label>
+                <select id="sort-price" name="sort" class="filter-record-form-option">
+                    <option value="default">По умолчанию</option>
+                    <option value="asc">По возрастанию</option>
+                    <option value="desc">По убыванию</option>
+                </select>
+            </div>
+            <div class="sort-block cycle-objects-card">
+                <label for="sort-length" class="sort-select">Сортировать по размеру:</label>
+                <select id="sort-length" name="sort" class="filter-record-form-option">
+                    <option value="default">По умолчанию</option>
+                    <option value="asc_length">По возрастанию</option>
+                    <option value="desc_length">По убыванию</option>
+                </select>
+            </div>
+            <div class="sort-block cycle-objects-card">
+                <button id="reset-filters" class="filter-record-buttons">Сбросить фильтр</button>
+            </div>               
+        </div>
+    </aside>
+    <section class="catalog-items" id="catalog-items">
+        {% include 'catalog/_catalog_list_partial.html' with page_obj=page_obj %}
+    </section>
+    
+    <div class="blogs-btn">
+        <button id="load-more" class="btn featurs-body-card-link hovered-btn">Показать еще</button>
+        <div id="loading" style="display: none;"></div>
+        <div id="end-of-content" style="display: none;">Нет больше записей.</div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
      {% endcomment %}
 {% endblock %}
 

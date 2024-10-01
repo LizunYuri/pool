@@ -1,6 +1,6 @@
-<div class="container catalog-items-container">
+<div class="container catalog-items-container" id='catalog-articles'>
     {% for catalog in page_obj %}
-        <a href="{% url 'product_detail' slug=catalog.slug %}" class="catalog-items-card">
+        <a href="{% url 'product_detail' slug=catalog.slug %}" class="catalog-items-card ">
                 <div class="catalog-items-card-img">
                     <img src="{{ catalog.get_image_url }}" alt="{{ catalog.title }}">
                 </div>
@@ -12,9 +12,9 @@
                     {% if catalog.length or catalog.width or catalog.depth %}
                     <div class="size">
                         <p>Размер: </p>
-                        <p>Длина: {{ catalog.length  }}</p>
-                        <p>Ширина: {{ catalog.width }}</p>
-                        <p>Глубина: {{ catalog.depth }}</p>
+                        <p>Длина: {{ catalog.length  }}м.</p>
+                        <p>Ширина: {{ catalog.width }}м.</p>
+                        <p>Глубина: {{ catalog.depth }}м.</p>
                     </div>
                     {% endif %}
                     <p>{{ catalog.description|truncatewords:9 }}</p>

@@ -1,0 +1,35 @@
+{% load static %}
+
+{% for category_data in categories_with_products %}
+    <div class="row catalog-content">
+        <div class="col-xl-6 col-lg-12 catalog-img" style="opacity: 1;">
+            <div class="catalog-img-bg">
+                <div class="image">
+                    <img src="{{ category_data.category.get_image_url }}" alt="{{ category_data.category.category }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-12 catalog-price"  style="opacity: 1;">
+            <p class="type">{{ category_data.category.get_type_display }}</p>
+            <a href="{% url 'category_detail' category_data.category.slug %}"><h3>{{ category_data.category.category }}</h3></a>
+            {% for product in category_data.products %}
+                <a class="catalog-list" href="{% url 'product_detail' slug=product.slug %}">
+                    <div class="catalog-list-icon">
+                        <img src="{% static category_data.category.icon %}" alt="Иконка типа">
+                    </div>
+                    <div class="catalog-list-body">
+                        <h4>{{ product.title }}</h4>
+                        <p>{{ product.description|truncatewords:4 }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+            {% if category_data.category %}
+                <a class="featurs-body-card-link hovered-btn" href="{% url 'category_detail' category_data.category.slug %}">Получить больше...</a>  
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+
+{% block scripts %}
+    <script src="{% static 'script/loadPage.js' %}"></script>
+{% endblock %}
