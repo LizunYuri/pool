@@ -1,6 +1,15 @@
 {% extends "components/base.html" %}
 
 {% block title %}АкваТехПласт | {{ service.title }} | Краснодар {% endblock %}
+{% block meta %}
+    <meta name="description" content="{{ service.description|truncatewords:15 }}">
+    <meta name="keywords" content="{{ service.title }}, строительство бассейнов, услуги по строительству, проектирование бассейнов, монтаж бассейнов, обслуживание бассейнов">
+    <meta name="author" content="b_root">
+    <meta property="og:title" content="АкваТехПласт | {{ service.title }} | Краснодар">
+    <meta property="og:description" content="{{ service.description|truncatewords:15 }}">
+    <meta property="og:type" content="website">
+{% endblock %}
+
 
 {% load static %}
 
@@ -47,7 +56,7 @@
     <section class="service-form">
             <h5>Подробнее</h5>
             <h6>Остались вопросы? Мы Вам перезвоним</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, quidem? Laboriosam ex laudantium sed laborum, qui esse aspernatur quae fugiat deleniti sit fuga consequuntur assumenda veniam, distinctio repellat quod ea.</p>
+            <p>Мы перезвоним Вам для предоставления необходимой информации и консультации</p>
             
             {% include "components/serviceForm.html" %}
     </section>

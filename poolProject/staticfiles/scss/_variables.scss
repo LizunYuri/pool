@@ -1,0 +1,169 @@
+
+
+// colors
+$color-bg: rgb(92, 134, 146);
+$color-dark-bg: rgb(30, 44, 48);
+$color-light-bg: rgba(122, 156, 165, 1);
+$color-title: rgba(20, 20, 20, 1);
+$color-text: rgba(85, 85, 85, 1);
+$color-white: rgba(255, 255, 255, 1);
+
+// tipography
+@mixin heating-h1{
+    font-size: 70px;
+    line-height: 91px;
+    letter-spacing: -1.5%;
+}
+
+@mixin heating-h2{
+    font-size: 55px;
+    line-height: 71.5px;
+    letter-spacing: -1.5%;
+}
+
+@mixin heating-h3{
+    font-size: 45px;
+    line-height: 58.5px;
+    letter-spacing: -1.5%;
+}
+
+@mixin heating-h4{
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: -1.5%;
+}
+
+@mixin heating-h5{
+    font-size: 26px;
+    line-height: 33.8px;
+    letter-spacing: -1.5%;
+}
+
+@mixin heating-h6{
+    font-size: 22px;
+    line-height: 28.6px;
+    letter-spacing: -1.5%;
+}
+
+@mixin text{
+    font-size: 18px;
+    line-height: 27.9px;
+    letter-spacing: 2%;
+}
+
+@mixin list{
+    font-size: 18px;
+    line-height: 50px;
+    letter-spacing: 0.02em;
+    text-align: left;
+}
+
+@mixin dark-btn{
+    background: $color-bg;
+    color: $color-white;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 16.25px;
+    letter-spacing: 0.12em;
+    text-align: center;
+    padding: 27px, 85px, 22px, 85px;
+}
+
+@mixin light-btn{
+    // padding: 17px 32px 17px 32px;
+    // opacity: 0px;
+    border: 2px solid $color-bg;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 16.25px;
+    letter-spacing: 0.12em;
+    text-align: center;
+}
+
+@mixin title{
+    @include heating-h3;
+    text-align: center;
+    max-width: 659px;
+    padding-bottom: 36px;
+    transition: all .5s ease;
+    text-align: center;
+
+}
+
+@mixin subtitle{
+    font-family: 'Manrope';
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 23.17px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: $color-bg;
+    text-transform: uppercase;
+    padding-bottom: 38px;
+    transition: all .5s ease;
+}
+
+@mixin page-title{
+
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background: $color-dark-bg;
+        &-container{
+            max-width: 659px;
+            margin-top: 76px;
+            margin-bottom: 76px;
+            display: flex;
+            flex-direction: column;
+            color: $color-white;
+             & > h2{
+                font-family: 'Manrope';
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 23.17px;
+                letter-spacing: 0.1em;
+                text-align: center;
+                text-transform: uppercase;
+                padding-bottom: 36px;
+                color : $color-white;
+            }
+            & > h1 {
+                font-family: 'Play fair';
+                font-size: 55px;
+                font-weight: 700;
+                line-height: 66px;
+                letter-spacing: -0.01em;
+                text-align: center;
+                color : $color-white;
+            }
+        }
+}
+.cycle-objects-card{
+    opacity: 0;
+    transform: translateX(-40px);
+    transform: translateZ(-40px);
+    transition: all .5s ease;
+}
+
+.cycle-objects-subtitle{
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all .5s ease;
+}
+
+.cycle-objects-title{
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all .5s ease;
+}
+
+.cycle-objects-img{
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.fade-element{
+    opacity: 1;
+    transform: translateX(0);
+    transform: translateY(0);
+}

@@ -41,48 +41,6 @@
 {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-// Получаем CSRF-токен из куки
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    const csrftoken = getCookie('csrftoken');
-
-// AJAX-запрос
-    $('#form2').on('submit', function(e) {
-        e.preventDefault();  // Отключаем стандартное поведение формы
-
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'save_form_data' %}",
-            data: $(this).serialize(),
-            headers: {
-                'X-CSRFToken': csrftoken  // Передаем CSRF-токен в заголовках
-            },
-            success: function(response) {
-                // Показываем сообщение об успешной отправке
-                $('#form2').hide();  // Скрываем форму
-                $('<p class="discount-content-body-title">Спасибо! </br> Ваши данные успешно отправлены.</p>').insertAfter('#form2');
-            },
-            error: function(error) {
-                alert('Произошла ошибка!');
-            }
-        });
-    });
-
-    </script>
-    <script>
         document.querySelectorAll('.service-form-body-tag input').forEach((input) => {
             const label = input.previousElementSibling;
         
@@ -114,6 +72,56 @@
             if (input.value) {
                 moveLabel();  // Если поле уже заполнено, смещаем label
             }
+        });
+    </script>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        const csrftoken = getCookie('csrftoken');
+        
+        $('#form2').on('submit', function(e) {
+            e.preventDefault();  // Отключаем стандартное поведение формы
+            
+            // Вручную проверяем валидацию формы
+            const name = $('#serviceName').val().trim();
+            const city = $('#serviceSity').val().trim();
+            const phone = $('#phone').val().trim();
+        
+            if (!name || !city || !phone) {  // Простая проверка заполненности
+                alert('Пожалуйста, заполните все поля!');
+                return;  // Прерываем выполнение, если поля не заполнены
+            }
+        
+            
+        
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'save_form_data' %}",
+                data: $(this).serialize(),
+                headers: {
+                    'X-CSRFToken': csrftoken  // Передаем CSRF-токен в заголовках
+                },
+                success: function(response) {
+                    $('#form2').hide();  // Скрываем форму
+                    $('<p class="discount-content-body-title">Спасибо! </br> Ваши данные успешно отправлены.</p>').insertAfter('#form2');
+                },
+                error: function(error) {
+                    alert('Произошла ошибка!');
+                }
+            });
         });
     </script>
 {% endblock %}

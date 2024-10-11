@@ -137,7 +137,8 @@ class ShopElementModel(models.Model):
                                   help_text='Стоимость от. Не обязательно к заполнению',
                                   blank=True,
                                   null=True)
-    image = models.ImageField(upload_to='catalog/product/',
+    image = models.ManyToManyField('Photo', 
+                                   related_name='product',
                               verbose_name='Фото товара',
                               help_text='Красивое фото используется для оформления обложки страницы с описанием услуги')
     
@@ -154,6 +155,20 @@ class ShopElementModel(models.Model):
     def __str__(self):
 
         return self.title
+          
+    class Meta:
+        verbose_name='Товар'
+        verbose_name_plural = 'Каталог товаров'
+
+class Photo(models.Model):
+    image = models.ImageField(upload_to='catalog/product/',
+                              verbose_name='Фото товара',
+                              help_text='Красивое фото используется для оформления обложки страницы с описанием услуги')
+    
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        return None
     
     def delete(self, *args, **kwargs):
         # Удаление файла изображения
@@ -161,14 +176,10 @@ class ShopElementModel(models.Model):
             os.remove(self.image.path)
         super().delete(*args, **kwargs)
 
-    def get_image_url(self):
-        if self.image:
-            return self.image.url
-        return None
-      
+
     class Meta:
-        verbose_name='Товар'
-        verbose_name_plural = 'Каталог товаров'
+        verbose_name='Изображение'
+        verbose_name_plural = 'Загруженные изображения'
 
 class DiscountModel(models.Model):
     title = models.CharField(max_length=70,

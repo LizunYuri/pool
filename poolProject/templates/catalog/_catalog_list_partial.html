@@ -2,7 +2,12 @@
     {% for catalog in page_obj %}
         <a href="{% url 'product_detail' slug=catalog.slug %}" class="catalog-items-card ">
                 <div class="catalog-items-card-img">
-                    <img src="{{ catalog.get_image_url }}" alt="{{ catalog.title }}">
+
+                    {% if catalog.image.all %}
+                        {% with catalog.image.all.0 as first_image %}
+                            <img src="{{ first_image.image.url }}"  alt="{{ catalog.title }}"/>
+                        {% endwith %}
+                    {% endif %}
                 </div>
                 <div class="catalog-items-card-text">
                     <h5>{{ catalog.title }}</h5>

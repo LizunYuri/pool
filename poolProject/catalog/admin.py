@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ServicesModel, ShopCategoryModel, ShopElementModel, DiscountModel
+from .models import ServicesModel, Photo, ShopCategoryModel, ShopElementModel, DiscountModel
 
 
 @admin.register(ServicesModel)
@@ -29,3 +29,7 @@ class DiscountModelADmin(admin.ModelAdmin):
     list_display = ('title', 'publish', 'date_of', 'date_to')
     search_fields = ('title', 'date_of', 'date_to')
     list_filter = ('title', 'date_of', 'date_to')
+
+@admin.register(Photo)
+class PhotoADmin(admin.ModelAdmin):
+    list_display = ('image',)

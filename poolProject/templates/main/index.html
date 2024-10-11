@@ -29,29 +29,6 @@
             </div>
         </div>
     </section>
-    <section class="featurs" id="featurs">
-        <div class="container">
-            <div class="row">
-                <div class="col featurs-body">
-                    {% for service in services %}
-                        <div class="featurs-body-card">
-                            <div class="featurs-body-card-img">
-                                {% if service.get_image_url %}
-                                    <img src="{{ service.get_image_url }}" alt="{{ service.title }}">
-                                {% else %}
-                                    <p>Изображение отсутствует</p>
-                                {% endif %}
-                            </div>
-                            <h3 class="featurs-body-card-title">{{ service.title}}</h3>
-                            <div class="featurs-body-card-text">{{ service.description }}</div>
-                            <a class="featurs-body-card-link hovered-btn" href="{% url 'service_detail' service.pk %}">Подробнее...</a>
-                        </div>
-                    {% endfor %}
-                    
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="about" id="about">
         <div class="container">
             <div class="row">
@@ -85,97 +62,6 @@
                         <img class="about-image-content-img" src="{% static 'img/pages/002.jpeg' %}" alt="ATP">
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="shop" id="shop">
-        <div class="container shop-container">
-            <h2 class="shop-top-subtitle">Наша продукция</h2>
-            <h3 class="shop-top-title">Пожалуй лучшие бассейны России</h3>
-            {% for category_data in categories_with_products %}
-            <div class="row shop-content">
-                <div class="col-xl-6 col-lg-12 shop-img">
-                    <img src="{{ category_data.category.get_image_url }}" alt="{{ category_data.category.category }}">
-                </div>
-                <div class="col-xl-6 col-lg-12 shop-list">
-                    <div class="block"></div>
-                    <h3 class="shop-title">{{ category_data.category.category }}</h3>
-                    <div class="shop-list-block">
-                        {% for product in category_data.products %}
-                            <div class="shop-list-block-item">
-                                <div class="shop-list-block-item-title">
-                                    <h3>{{ product.title }}</h3>
-                                    <p><span>Цена от: </span>{{ product.price_to }} руб.</p>
-                                </div>
-                               <p>{{ product.description|truncatewords:9 }}</p>
-                            </div>
-                        {% endfor %}
-                        {% if category_data.category %}
-                            <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'category_detail' category_data.category.slug %}">Узнать больше...</a>  
-                        {% endif %}
-                    </div>
-                    
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-    <section class="review" id="review">
-        <div class="container review-container">
-            <h2 class="review-subtitle">Отзывы</h2>
-            <h3 class="review-title">We are Experienced in making you very Beautiful</h3>
-            <div class="review-cards">
-                <button class="review-btn" id="prev-review-btn">
-                    <i class="fas fa-chevron-circle-left"></i>
-                </button>
-                <div class="review-cards"  id="review-card-wrapper">
-                    {% for review in reviews %}
-                        <div class="review-card" style="display: none;">
-                            <div class="review-card-text">
-                                {{ review.text }}
-                            </div>
-                            <div class="review-card-footer">
-                                <div class="review-card-user">
-                                    <div class="review-card-user-foto">
-                                        <img src="{{ review.get_image_url }}" alt="{{ review.name }}">
-                                    </div>
-                                    <div class="review-card-user-name">
-                                        <p>{{ review.date }}</p>
-                                        <p><span>{{ review.name }}</span></p>
-                                        <p>{{ review.sity }}</p>
-                                    </div>
-                                </div>
-                                <div class="review-card-decor">
-                                    <div class="review-card-decor-left"></div>
-                                    <div class="review-card-decor-left"></div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <button class="review-btn" id="next-review-btn">
-                    <i class="fas fa-chevron-circle-right"></i>
-                </button>
-            </div>
-            <button class="review-modal featurs-body-card-link hovered-btn shop-btn">Оставить отзыв</button>
-        </div>
-    </section>
-    <section class="awesome" id="awesome">
-        <div class="container awesome-container">
-            <h2 class="awesome-subtitle">Почему стоит выбрать нас</h2>
-            <h3 class="awesome-title">Actually what you’ll get from</h3>
-            <div class="awesome-content">
-                {% for awesome in awesomes %}
-                    <div class="awesome-content-card">
-                        <div class="awesome-content-card-icon">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div class="awesome-content-card-text">
-                            <h4>{{ awesome.title }}</h4>
-                            <p>{{ awesome.text }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
             </div>
         </div>
     </section>
@@ -284,6 +170,121 @@
             </div>
         </div>
     </section>
+    <section class="shop" id="shop">
+        <div class="container shop-container">
+            <h2 class="shop-top-subtitle">Наша продукция</h2>
+            <h3 class="shop-top-title">Пожалуй лучшие бассейны России</h3>
+            {% for category_data in categories_with_products %}
+            <div class="row shop-content">
+                <div class="col-xl-6 col-lg-12 shop-img">
+                    <img src="{{ category_data.category.get_image_url }}" alt="{{ category_data.category.category }}">
+                </div>
+                <div class="col-xl-6 col-lg-12 shop-list">
+                    <div class="block"></div>
+                    <h3 class="shop-title">{{ category_data.category.category }}</h3>
+                    <div class="shop-list-block">
+                        {% for product in category_data.products %}
+                            <div class="shop-list-block-item">
+                                <div class="shop-list-block-item-title">
+                                    <h3>{{ product.title }}</h3>
+                                    <p><span>Цена от: </span>{{ product.price_to }} руб.</p>
+                                </div>
+                               <p>{{ product.description|truncatewords:9 }}</p>
+                            </div>
+                        {% endfor %}
+                        {% if category_data.category %}
+                            <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'category_detail' category_data.category.slug %}">Узнать больше...</a>  
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="awesome" id="awesome">
+        <div class="container awesome-container">
+            <h2 class="awesome-subtitle">Почему стоит выбрать нас</h2>
+            <h3 class="awesome-title">Мы не просто строим бассейны — мы создаем места для вашего отдыха.</h3>
+            <div class="awesome-content">
+                {% for awesome in awesomes %}
+                    <div class="awesome-content-card">
+                        <div class="awesome-content-card-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="awesome-content-card-text">
+                            <h4>{{ awesome.title }}</h4>
+                            <p>{{ awesome.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="review" id="review">
+        <div class="container review-container">
+            <h2 class="review-subtitle">Отзывы</h2>
+            <h3 class="review-title">Мы ценим каждого клиента и гордимся доверием, которое нам оказывают!</h3>
+            <div class="review-cards">
+                <button class="review-btn" id="prev-review-btn">
+                    <i class="fas fa-chevron-circle-left"></i>
+                </button>
+                <div class="review-cards"  id="review-card-wrapper">
+                    {% for review in reviews %}
+                        <div class="review-card" style="display: none;">
+                            <div class="review-card-text">
+                                {{ review.text }}
+                            </div>
+                            <div class="review-card-footer">
+                                <div class="review-card-user">
+                                    <div class="review-card-user-foto">
+                                        <img src="{{ review.get_image_url }}" alt="{{ review.name }}">
+                                    </div>
+                                    <div class="review-card-user-name">
+                                        <p>{{ review.date }}</p>
+                                        <p><span>{{ review.name }}</span></p>
+                                        <p>{{ review.sity }}</p>
+                                    </div>
+                                </div>
+                                <div class="review-card-decor">
+                                    <div class="review-card-decor-left"></div>
+                                    <div class="review-card-decor-left"></div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="review-btn" id="next-review-btn">
+                    <i class="fas fa-chevron-circle-right"></i>
+                </button>
+            </div>
+            {% comment %} <button class="review-modal featurs-body-card-link hovered-btn shop-btn">Оставить отзыв</button> {% endcomment %}
+        </div>
+    </section>
+    <section class="featurs" id="featurs">
+        <div class="container blog-container">
+            <h2 class="featurs-container-subtitle">Услуги</h2>
+            <h3 class="featurs-container-title">Строительство бассейнов и не только</h3>
+            <div class="row">
+                <div class="col featurs-body">
+                    {% for service in services %}
+                        <div class="featurs-body-card">
+                            <div class="featurs-body-card-img">
+                                {% if service.get_image_url %}
+                                    <img src="{{ service.get_image_url }}" alt="{{ service.title }}">
+                                {% else %}
+                                    <p>Изображение отсутствует</p>
+                                {% endif %}
+                            </div>
+                            <h3 class="featurs-body-card-title">{{ service.title}}</h3>
+                            <div class="featurs-body-card-text">{{ service.description }}</div>
+                            <a class="featurs-body-card-link hovered-btn" href="{% url 'service_detail' service.pk %}">Подробнее...</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="blog" id="blog">
        <div class="container blog-container">
         <h2 class="blog-container-subtitle">Наш блог</h2>
@@ -311,8 +312,6 @@
         <a class="featurs-body-card-link hovered-btn shop-btn" href="{% url 'blogs' %}">Больше историй</a>    
        </div> 
     </section>
-
-
 {% endblock %}
 
 {% block scripts %}
@@ -321,45 +320,6 @@
     <script src="{% static 'script/salideReview.js' %}"></script>
     <script src="{% static 'script/loadAboutDetail.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-        
-        const csrftoken = getCookie('csrftoken');
-        
-        $('#form1').on('submit', function(e) {
-            e.preventDefault();  // Отключаем стандартное поведение формы
-        
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'save_form_data' %}",
-                data: $(this).serialize(),
-                headers: {
-                    'X-CSRFToken': csrftoken  // Передаем CSRF-токен в заголовках
-                },
-                success: function(response) {
-                    // Показываем сообщение об успешной отправке
-                    $('#form1').hide();  // Скрываем форму
-                    $('<p class="discount-content-body-title">Спасибо! </br> Ваши данные успешно отправлены.</p>').insertAfter('#form1');
-                },
-                error: function(error) {
-                    alert('Произошла ошибка!');
-                }
-            });
-        });
-    </script>
     <script>
         document.querySelectorAll('.discount-form-body-tag input, .discount-form-body-tag textarea').forEach((input) => {
             const label = input.previousElementSibling;
@@ -392,6 +352,56 @@
             if (input.value) {
                 moveLabel();  // Если поле уже заполнено, смещаем label
             }
+        });
+    </script>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        const csrftoken = getCookie('csrftoken');
+        
+        $('#form1').on('submit', function(e) {
+            e.preventDefault();  // Отключаем стандартное поведение формы
+            
+            // Вручную проверяем валидацию формы
+            const name = $('#name').val().trim();
+            const city = $('#city').val().trim();
+            const phone = $('#phone').val().trim();
+        
+            if (!name || !city || !phone) {  // Простая проверка заполненности
+                alert('Пожалуйста, заполните все поля!');
+                return;  // Прерываем выполнение, если поля не заполнены
+            }
+        
+            
+        
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'save_form_data' %}",
+                data: $(this).serialize(),
+                headers: {
+                    'X-CSRFToken': csrftoken  // Передаем CSRF-токен в заголовках
+                },
+                success: function(response) {
+                    $('#form1').hide();  // Скрываем форму
+                    $('<p class="discount-content-body-title">Спасибо! </br> Ваши данные успешно отправлены.</p>').insertAfter('#form1');
+                },
+                error: function(error) {
+                    alert('Произошла ошибка!');
+                }
+            });
         });
     </script>
 {% endblock %}

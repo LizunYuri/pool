@@ -1,0 +1,164 @@
+@import 'variables';
+
+.footer{
+    padding-top: 76px;
+    background: $color-dark-bg;
+    &-logo{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-bottom: 76px;
+        border-bottom: 1px solid rgba(255, 255, 255, 1);
+        &-link{
+            display: flex;
+            align-items: center;
+             img{
+                width: 40px;
+                height: 40px;
+                filter: grayscale(100%) invert(100%) contrast(400%);
+            }
+            h6{
+                margin: 0;
+                padding-left: 23px;
+                font-size: 40px;
+                font-weight: 700;
+                line-height: 50px;
+                letter-spacing: 0.02em;
+                text-align: left;
+                color: $color-white;
+            }
+        }
+    }
+    &-icons{
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+       &> a{
+            width: 55px;
+            height: 55px;
+            border: 2px solid rgba(92, 134, 146, 1);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-white;
+            font-size: 22px;
+        }
+    }
+    &-body{
+        display: flex;
+        padding-top: 76px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        &-explorer{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            ul{
+                padding-left: 0;
+            }
+            p{
+                font-family: 'Play fair';
+                @include heating-h6;
+                color: $color-white;
+            }
+            a{
+                color: $color-white;
+                font-size: 17px;
+                font-weight: 500;
+                line-height: 34px;
+                letter-spacing: -0.01em;
+                text-align: left;
+            }
+        }
+    }
+    &-address{
+        width: 325px;
+        
+        h6, p, span, a{
+            color: $color-white;
+            padding-bottom: 22px;
+        }
+        h6{
+            @include heating-h6;
+            font-weight: 500;
+           
+        }
+        p, a{
+            display: flex;
+            align-items: flex-start;
+            margin: 0;
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 25.5px;
+            letter-spacing: -0.01em;
+            text-align: left;
+            padding-bottom: 22px;
+            & > span{
+                font-weight: 700;
+                padding-bottom: 22px;
+                padding-right: 22px;
+            }
+            
+        }
+    }
+    &-working{
+        width: 176px;
+        h6, p, span, a{
+            color: $color-white;
+            padding-bottom: 22px;
+        }
+        h6{
+            @include heating-h6;
+            font-weight: 400;
+           
+        }
+        p, a{
+            display: flex;
+            align-items: flex-start;
+            margin: 0;
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 25.5px;
+            letter-spacing: -0.01em;
+            text-align: left;
+            padding-bottom: 22px;
+            & > span{
+                font-weight: 700;
+                padding-bottom: 22px;
+                padding-right: 22px;
+            }
+            
+        }
+    }
+}
+.copyright{
+    background: rgba(17, 30, 34, 1);
+    height: 75px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Manrope';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: $color-white;
+}
+
+.scroll-to-top{
+    width: 55px;
+    height: 55px;
+    border: 2px solid rgba(92, 134, 146, 1);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    font-size: 22px;
+}

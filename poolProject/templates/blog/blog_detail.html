@@ -1,6 +1,14 @@
 {% extends "components/base.html" %}
 {% for blog in blog  %}
 {% block title %}АкваТехПласт | {{ blog.title}} | Краснодар {% endblock %}
+{% block meta %}
+    <meta name="description" content="{{ blog.text|truncatewords:15 }}">
+    <meta name="keywords" content="бассейны, новости бассейнов, полезная информация, советы по обслуживанию бассейнов, тенденции бассейнов">
+    <meta name="author" content="b_root">
+    <meta property="og:title" content="АкваТехПласт | {{ blog.title}} | Краснодар">
+    <meta property="og:description" content="{{ blog.text|truncatewords:15 }}.">
+    <meta property="og:type" content="website">
+{% endblock %}
 {% load static %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/blog_detail.css' %}">

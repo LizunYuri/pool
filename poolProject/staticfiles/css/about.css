@@ -1,0 +1,538 @@
+.cycle-objects-card {
+  opacity: 0;
+  -webkit-transform: translateX(-40px);
+      -ms-transform: translateX(-40px);
+          transform: translateX(-40px);
+  -webkit-transform: translateZ(-40px);
+          transform: translateZ(-40px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-subtitle {
+  opacity: 0;
+  -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+          transform: translateY(-20px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-title {
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+      -ms-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.cycle-objects-img {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.fade-element {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.reservation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  background: rgb(30, 44, 48);
+}
+.reservation-container {
+  max-width: 659px;
+  margin-top: 76px;
+  margin-bottom: 76px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: rgb(255, 255, 255);
+}
+.reservation-container > h2 {
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 36px;
+  color: rgb(255, 255, 255);
+}
+.reservation-container > h1 {
+  font-family: "Play fair";
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 66px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.values {
+  padding-top: 76px;
+  padding-bottom: 76px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.values > h3 {
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgb(92, 134, 146);
+  text-transform: uppercase;
+  padding-bottom: 38px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.values > h4 {
+  font-size: 45px;
+  line-height: 58.5px;
+  letter-spacing: -1.5%;
+  text-align: center;
+  max-width: 659px;
+  padding-bottom: 36px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  text-align: center;
+}
+.values-card {
+  max-width: 650px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-bottom: 36px;
+  margin-top: 36px;
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+.values-card-img {
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgb(30, 44, 48);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: rgb(242, 252, 255);
+}
+.values-card-img img {
+  width: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.values-card-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-left: 22px;
+  max-width: 438px;
+}
+.values-card-text > p {
+  font-family: "Play fair";
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 26.4px;
+  text-align: left;
+  color: rgb(20, 20, 20);
+}
+.values-card-text > p > span {
+  font-family: "Manrope";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 31.5px;
+  text-align: left;
+  color: rgb(85, 85, 85);
+}
+
+.description {
+  width: 100%;
+  padding-top: 76px;
+  padding-bottom: 76px;
+  background: rgb(235, 243, 245);
+}
+.description-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 100%;
+  min-height: 499px;
+  background: rgb(30, 44, 48);
+  padding: 74px 72px 74px 72px;
+}
+.description-container-img {
+  position: absolute;
+  top: 50%;
+  left: 74px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 480px;
+  height: 610px;
+}
+.description-container-img > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.description-container-text {
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: self-start;
+      -ms-flex-align: self-start;
+          align-items: self-start;
+}
+.description-container-text > h4 {
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgb(92, 134, 146);
+  text-transform: uppercase;
+  padding-bottom: 38px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: rgb(255, 255, 255);
+}
+.description-container-text > h5 {
+  font-size: 45px;
+  line-height: 58.5px;
+  letter-spacing: -1.5%;
+  text-align: center;
+  max-width: 659px;
+  padding-bottom: 36px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  text-align: center;
+  max-width: 460px;
+  text-align: left;
+  color: rgb(255, 255, 255);
+}
+.description-container-text > p {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 31.5px;
+  text-align: left;
+}
+
+.personal {
+  width: 100%;
+  padding-top: 76px;
+  padding-bottom: 76px;
+}
+.personal-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.personal-container > h3 {
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgb(92, 134, 146);
+  text-transform: uppercase;
+  padding-bottom: 38px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.personal-container > h4 {
+  font-size: 45px;
+  line-height: 58.5px;
+  letter-spacing: -1.5%;
+  text-align: center;
+  max-width: 659px;
+  padding-bottom: 36px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  text-align: center;
+}
+.personal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 36px;
+}
+.personal-card {
+  width: 330px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.personal-card-img {
+  width: 100%;
+  height: 300px;
+}
+.personal-card-img > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.personal-card > h5 {
+  font-family: "Play fair";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.8px;
+  text-align: center;
+  color: rgb(20, 20, 20);
+  padding: 12px;
+}
+.personal-card > p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28.8px;
+  text-align: center;
+  color: rgb(85, 85, 85);
+  padding: 12px;
+}
+.personal-card > p > span {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  color: rgb(92, 134, 146);
+  text-transform: uppercase;
+}
+
+.maps {
+  width: 100%;
+  padding-top: 76px;
+  padding-bottom: 76px;
+  background: rgb(237, 245, 247);
+}
+.maps-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.maps-container > h3 {
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgb(92, 134, 146);
+  text-transform: uppercase;
+  padding-bottom: 38px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.maps-container > h4 {
+  font-size: 45px;
+  line-height: 58.5px;
+  letter-spacing: -1.5%;
+  text-align: center;
+  max-width: 659px;
+  padding-bottom: 36px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  text-align: center;
+}
+.maps-content {
+  width: 100%;
+  background: rgb(30, 44, 48);
+  padding: 74px 72px 74px 72px;
+}
+
+.sertificate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 76px;
+  padding-bottom: 76px;
+}
+.sertificate-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.sertificate-container > h3 {
+  font-family: "Manrope";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.17px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: rgb(92, 134, 146);
+  text-transform: uppercase;
+  padding-bottom: 38px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.sertificate-container > h4 {
+  font-size: 45px;
+  line-height: 58.5px;
+  letter-spacing: -1.5%;
+  text-align: center;
+  max-width: 659px;
+  padding-bottom: 36px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  text-align: center;
+}
+.sertificate-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.sertificate-content-card {
+  width: 241.5px;
+  height: 333.5px;
+  position: relative;
+  -webkit-box-shadow: 0px 20px 60px 0px rgba(47, 68, 73, 0.46);
+          box-shadow: 0px 20px 60px 0px rgba(47, 68, 73, 0.46);
+  overflow: hidden;
+}
+.sertificate-content-card img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+  .description-container-img {
+    width: 350px;
+    height: 470px;
+  }
+}
+@media (max-width: 768px) {
+  .description-container-img {
+    display: none;
+  }
+  .description-container-text {
+    width: 100%;
+  }
+  .personal-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .values-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .maps-content {
+    padding: 24px 22px 24px 22px;
+  }
+}
+@media (max-width: 468px) {
+  .description-container-text > h5 {
+    max-width: 300px;
+    font-size: 25px;
+  }
+}

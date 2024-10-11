@@ -1,11 +1,21 @@
 {% extends "components/base.html" %}
 
 {% block title %}АкваТехПласт | {{ product.title }} | Краснодар {% endblock %}
-
+{% block meta %}
+    <meta name="description" content="{{ product.title }}, {{ product.description|truncatewords:15 }} ">
+    <meta name="keywords" content="каталог бассейнов, оборудование для бассейнов, модели бассейнов, аксессуары для бассейнов, {{ product.title }}">
+    <meta name="author" content="b_root">
+    <meta property="og:title" content="АкваТехПласт | {{ product.title }} | Краснодар ">
+    <meta property="og:description" content="{{ product.title }}, {{ product.description|truncatewords:15 }} ">
+    <meta property="og:type" content="website">
+{% endblock %}
 {% load static %}
 
 {% block style %}
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/fancy.css' %}">
     <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
     <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
     <link rel="stylesheet" href="{% static 'css/services.css' %}">
 {% endblock %}
@@ -23,7 +33,22 @@
                 <div class="col-xl-6 col-lg-12 catalog-img">
                     <div class="catalog-img-bg">
                         <div class="image">
-                            <img src="{{ product.get_image_url }}" alt="{{ product.title }}">
+                            <div class="previews">
+                                {% for image in product.image.all %}
+                                    <a 
+                                    data-full="{{ image.image.url }}"
+                                    class="gallery-link block {% if forloop.first %}selected{% endif %}">
+                                        <img class="xzoom-gallery" width="80" src="{{ image.image.url }}" />
+                                    </a>
+                                {% endfor %}
+                            </div>
+                            <div class="full">
+                                {% for image in product.image.all %}
+                                    {% if forloop.first %}
+                                        <img src="{{ image.image.url }}" xoriginal="{{ image.image.url }}" />
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -35,6 +60,7 @@
                             <p>Ширина: {{ product.width }}</p>
                             <p>Глубина: {{ product.depth }}</p>
                         </div>
+
                     {% endif %}
                     {% if product.price_to %}
                         <h6 class="product-price"> Цена от: {{ product.price_to }} руб.</h6>
@@ -43,6 +69,8 @@
                         <p>{{ product.description }}</p>
                     </div>
                 </div>
+            </div>
+        </div>
     </section>
     <section class="service-form">
         <h5>Подробнее</h5>
@@ -55,5 +83,35 @@
 
 {% block scripts %}
     <script src="{% static 'script/loadPage.js' %}"></script>
-    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+    <script src="{% static 'script/jquery.fancybox.js' %}"></script> 
+    <script src="{% static 'script/jquery.fancybox.pack.js' %}"></script> 
+    <script>
+        $(document).ready(function(){
+            // Обработчик кликов на всех ссылках
+            $('.gallery-link').click(function(e){
+                e.preventDefault(); // Предотвращаем стандартное поведение ссылки
+
+                var largeImage = $(this).attr('data-full'); // Получаем URL полного изображения
+
+                // Убираем класс 'selected' у всех ссылок
+                $('a').removeClass('selected');
+
+                // Добавляем класс 'selected' только на кликнутую ссылку
+                $(this).addClass('selected');
+
+                // Скрываем текущее полное изображение и заменяем его на новое
+                $('.full img').fadeOut(200, function(){
+                    $(this).attr('src', largeImage).fadeIn(200); // Меняем и показываем новое изображение
+                });
+            });
+
+            // Открытие изображения в Fancybox при клике на полном изображении
+                $('.full img').on('click', function(){
+                    var modalImage = $(this).attr('src'); // Получаем текущее изображение для модального окна
+                    $.fancybox.open(modalImage); // Открываем его в модальном окне
+                });
+            });
+      </script>
+
 {% endblock %}

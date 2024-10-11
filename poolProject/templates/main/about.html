@@ -1,6 +1,13 @@
 {% extends "components/base.html" %}
 {% block title %}АкваТехПласт | О нас | Краснодар {% endblock %}
-
+{% block meta %}
+    <meta name="description" content="Мы предлагаем комплексные решения для создания бассейнов любой сложности, гарантируя качество, надежность и долговечность каждого проекта.">
+    <meta name="keywords" content="АкваТехПласт Краснодар, компания по строительству бассейнов, строительство бассейнов под ключ Краснодар, опытные строители бассейнов Краснодар, проектирование бассейнов Краснодар, установка бассейнов Краснодар, лучшие компании по строительству бассейнов, строительство композитных бассейнов Краснодар, строительство бетонных бассейнов Краснодар, услуги по установке бассейнов, индивидуальный подход к строительству бассейнов, надежное строительство бассейнов, долговечные бассейны Краснодар">
+    <meta name="author" content="b_root">
+    <meta property="og:title" content="АкваТехПласт строительство бассейнов в Краснодаре">
+    <meta property="og:description" content="Мы предлагаем комплексные решения для создания бассейнов любой сложности, гарантируя качество, надежность и долговечность каждого проекта.">
+    <meta property="og:type" content="website">
+{% endblock %}
 {% load static %}
     
 {% block style %}
@@ -12,12 +19,12 @@
     <section class="reservation" id="reservation">
         <div class="container reservation-container">
             <h2 class="cycle-objects-subtitle">немного о нас</h2>
-            <h1 class="cycle-objects-title">The big story behind, our beautyness center</h1>
+            <h1 class="cycle-objects-title">Строим места для Вашего отдыха</h1>
         </div>
     </section>
     <section class="values" id="values">
         <h3 class="cycle-objects-subtitle">приемущества</h3>
-        <h4 class="cycle-objects-title">The work values we thrive for</h4>
+        <h4 class="cycle-objects-title">Многолетний опыт и команда профессионалов</h4>
             {% for value in values %}
                 <div class="values-card cycle-objects-card">
                     <div class="values-card-img">
@@ -39,15 +46,15 @@
             </div>
             <div class="description-container-text">
                 <h4 class="cycle-objects-subtitle">Почему мы</h4>
-                <h5 class="cycle-objects-title">Style is a Reflection of your Attitude & your Personality</h5>
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, buying to injected humour, or randomised words which don't look even many desktop publishing packages.</p>
+                <h5 class="cycle-objects-title">Строим с душой и профессионализмом.</h5>
+                <p>АкваТехПласт — с 2006 года в строительстве бассейнов под ключ. Мы используем только качественные материалы и новейшие технологии, что позволяет нам создавать долговечные бассейны, соответствующие вашим пожеланиям и бюджету. Индивидуальный подход к каждому клиенту и гарантия на все выполненные работы делают нас надежным партнером для вашего проекта.</p>
             </div>
         </div>
     </section>
     <section class="personal" id="personal">
         <div class="container personal-container">
             <h3 class="cycle-objects-subtitle">Эксперты бассейновой индустрии</h3>
-            <h4 class="cycle-objects-title">The amazing women behind Beautyness</h4>
+            <h4 class="cycle-objects-title">Команда признанных экспертов бассейновой индустрии</h4>
             <div class="personal-content">
                 <button class="review-btn" id="prev-persona-btn">
                     <i class="fas fa-chevron-circle-left"></i>
@@ -86,9 +93,9 @@
                 <h4 class="cycle-objects-title">Только профессионалы своего дела</h4>
                 <div class="sertificate-content">
                     {% for sertificate in sertificates %}
-                        <div class="sertificate-content-card">
-                            <img src="{{ sertificate.get_image_url }}" alt="{{ setrificate.title }}">
-                        </div>
+                        <a class="sertificate-content-card" href="{{ sertificate.get_image_url }}" data-fancybox="gallery" data-caption="{{ setrificate.title }}">
+                        <img src="{{ sertificate.get_image_url }}" alt="{{ setrificate.title }}">
+                      </a>
                     {% endfor %}
                 </div>
             </div>
@@ -100,6 +107,12 @@
 {% endblock %}
 
 {% block scripts %}
+    <script>
+        Fancybox.bind("[data-fancybox]", {
+        
+        });
+    </script>
+    
     <script src="{% static 'script/slidePersonal.js' %}"></script>
     <script src="{% static 'script/loadPage.js' %}"></script>
 {% endblock %}

@@ -1,7 +1,14 @@
 {% extends "components/base.html" %}
 
 {% block title %}АкваТехПласт | {{ category.category }} | Краснодар {% endblock %}
-
+{% block meta %}
+    <meta name="description" content="{{ category.category }}, Все о их недостатках и премуществах">
+    <meta name="keywords" content="каталог бассейнов, оборудование для бассейнов, модели бассейнов, аксессуары для бассейнов, {{ category.category }}">
+    <meta name="author" content="b_root">
+    <meta property="og:title" content="АкваТехПласт | {{ category.category }} | Краснодар ">
+    <meta property="og:description" content="Каталог бассейнов и оборудования: ассортимент моделей и аксессуаров для вашего бассейна.">
+    <meta property="og:type" content="website">
+{% endblock %}
 {% load static %}
 
 {% block style %}
@@ -26,105 +33,7 @@
     <section class="catalog-items" id="catalog-items">
         {% include 'catalog/_catalog_list_partial.html' with page_obj=page_obj %}
     </section>
-
-    
-
-    {% comment %} 
-        <div class="container catalog-container">
-            {% for category_data in categories_with_products %}
-                <div class="row catalog-content">
-                    <div class="col-xl-6 col-lg-12 catalog-img">
-                        <div class="catalog-img-bg">
-                            <div class="image">
-                                <img src="{{ category_data.category.get_image_url }}" alt="{{ category_data.category.category }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-12 catalog-price">
-                        <p class="type">{{ category_data.category.get_type_display  }}</p>
-                        <h3>{{ category_data.category.category }}</h3>
-                        {% for product in category_data.products %}
-                            <a  class="catalog-list" href="{% url 'product_detail' slug=product.slug %}">
-                                <div class="catalog-list-icon">
-                                    <img src="{% static category_data.category.icon %}" alt="Иконка типа">
-                                </div>
-                                <div class="catalog-list-body">
-                                    <h4>{{ product.title }}</h4>
-                                    <p>{{ product.description|truncatewords:4 }}</p>
-                                </div>
-                            </a>
-                        {% endfor %}
-                        {% if category_data.category %}
-                            <a class="featurs-body-card-link hovered-btn" href="{% url 'category_detail' category_data.category.slug %}">Получить больше...</a>  
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
-
-
-
-        {% extends "components/base.html" %}
-
-{% block title %}АкваТехПласт | {{ category.category }} | Краснодар {% endblock %}
-
-{% load static %}
-
-{% block style %}
-    <link rel="stylesheet" href="{% static 'css/blogs.css' %}">
-    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
 {% endblock %}
-
-{% block content %}
-    <section class="blogs" id="blogs">
-        <div class="container blogs-container">
-            <h2 class="cycle-objects-title">{{ category.get_type_display  }}</h2>
-            <h1 class="cycle-objects-subtitle">{{ category.category }}</h1>
-        </div>
-    </section>
-    <aside class="filter-record">
-        <div class="container filter-record-container">
-            <div class="sort-block cycle-objects-card">
-                <label for="sort-price" class="sort-select">Сортировать по цене:</label>
-                <select id="sort-price" name="sort" class="filter-record-form-option">
-                    <option value="default">По умолчанию</option>
-                    <option value="asc">По возрастанию</option>
-                    <option value="desc">По убыванию</option>
-                </select>
-            </div>
-            <div class="sort-block cycle-objects-card">
-                <label for="sort-length" class="sort-select">Сортировать по размеру:</label>
-                <select id="sort-length" name="sort" class="filter-record-form-option">
-                    <option value="default">По умолчанию</option>
-                    <option value="asc_length">По возрастанию</option>
-                    <option value="desc_length">По убыванию</option>
-                </select>
-            </div>
-            <div class="sort-block cycle-objects-card">
-                <button id="reset-filters" class="filter-record-buttons">Сбросить фильтр</button>
-            </div>               
-        </div>
-    </aside>
-    <section class="catalog-items" id="catalog-items">
-        {% include 'catalog/_catalog_list_partial.html' with page_obj=page_obj %}
-    </section>
-    
-    <div class="blogs-btn">
-        <button id="load-more" class="btn featurs-body-card-link hovered-btn">Показать еще</button>
-        <div id="loading" style="display: none;"></div>
-        <div id="end-of-content" style="display: none;">Нет больше записей.</div>
-    </div>
-{% endblock %}
-
-{% block scripts %}
-    <script src="{% static 'script/loadPage.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-{% endblock %}
-
-     {% endcomment %}
-{% endblock %}
-
 
 {% block scripts %}
     <script src="{% static 'script/loadPage.js' %}"></script>
